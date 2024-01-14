@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2024-01-14T16:46:25Z"
+  labels:
+    kubernetes.io/metadata.name: apx-x998-gidon
+  name: apx-x998-gidon
+  resourceVersion: "8128"
+  uid: f4558bb4-5059-4188-a0cb-daefcfdffa72
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active
