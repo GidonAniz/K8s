@@ -1,0 +1,36 @@
+Pod Design Questions: • Understand how to use Labels, Selectors and Annotations • Understand Deployments and how to perform rolling updates • Understand Deployments and how to perform rollbacks • Understand Jobs and CronJobs 
+1. Type the command for:  Get pods with label information 
+2. Create 5 nginx pods in which two of them is labeled env=prod and three of them is labeled env=dev 
+3. Verify all the pods are created with correct labels 
+4. Get the pods with label env=dev 
+5. Get the pods with label env=dev and also output the labels 
+6. Get the pods with label env=prod 
+7. Get the pods with label env=prod and also output the labels 
+8. Get the pods with label env 
+9. Get the pods with labels env=dev and env=prod 
+10. Get the pods with labels env=dev and env=prod and output the labels as well 
+11. Change the label for one of the pod to env=uat and list all the pods to verify 
+12. Remove the labels for the pods that we created now and verify all the labels are removed 
+13. Let’s add the label app=nginx for all the pods and verify (using kubectl) 
+14. Get all the nodes with labels (if using minikube you would get only master node) 
+15. Label the worker node nodeName=nginxnode 
+16. Create a Pod that will be deployed on the worker node with the label nodeName=nginxnode  
+  Add the nodeSelector to the below and create the pod:
+  apiVersion: v1 
+  kind: Pod 
+  metadata:   
+    creationTimestamp: null   
+    labels:    
+      run: nginx  
+    name: nginx 
+  spec:   
+    containers:   
+    - image: nginx    
+      name: nginx    
+      resources: {}   
+    dnsPolicy: ClusterFirst   
+    restartPolicy: 
+  Never status: {} 
+
+17. Verify the pod that it is scheduled with the node selector on the right node... fix it if it’s not behind scheduled. 
+18. Verify the pod nginx that we just created has this label 
