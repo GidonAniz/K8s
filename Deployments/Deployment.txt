@@ -7,9 +7,37 @@ a. Use the below command to create a yaml file.
 
 2. Get the deployment rollout status
 
+answer: 
+
+NAME                          READY   STATUS    RESTARTS   AGE
+hr-web-app-57cd7b5799-d4x6f   1/1     Running   0          20s
+hr-web-app-57cd7b5799-lqh4b   1/1     Running   0          20s
+hr-web-app-57cd7b5799-nkfc5   1/1     Running   0          20s
+hr-web-app-57cd7b5799-pk7cw   1/1     Running   0          20s
+hr-web-app-57cd7b5799-zztfb   1/1     Running   0          20s
+PS D:\DeskTop\DEVOPS_COURS>
+PS D:\DeskTop\DEVOPS_COURS>
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout status deployment hr-web-app
+deployment "hr-web-app" successfully rolled out
+PS D:\DeskTop\DEVOPS_COURS>
+
 3. Get the replicaset that created with this deployment 
 
+answer:
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl get replicaset -l app=hr-web-app
+NAME                    DESIRED   CURRENT   READY   AGE
+hr-web-app-57cd7b5799   5         5         5       2m17s
+PS D:\DeskTop\DEVOPS_COURS\spring-petclinic-for-jb-project>
+
 4. EXPORT the yaml of the replicaset and pods of this deployment
+
+answer: 
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl get replicaset -l app=hr-web-app -o yaml > replicaset.yaml
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -l app=hr-web-app -o yaml > pods.yaml
+
+the yaml files in the directory
 
 5. Delete the deployment you just created and watch all the pods are also being deleted
 
