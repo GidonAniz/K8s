@@ -1,27 +1,22 @@
 CONFIG MAP: 
 
 1. Create a file called config.txt with two values key1=value1 and key2=value2 and verify the file cat >> config.txt << EOF key1=value1 key2=value2 EOF cat config.txt 
-
-answer:
-PS D:\DeskTop\DEVOPS_COURS> @"
->> key1=value1
->> key2=value2
->> "@ | Out-File -FilePath "config.txt"
-
-PS D:\DeskTop\DEVOPS_COURS> Get-Content -Path "D:\DeskTop\DEVOPS_COURS\config.txt"
-key1=value1
-key2=value2
-
-
-
 2.  Create a configmap named keyvalcfgmap and read data from the file config.txt and verify that configmap is created correctly 
 Create an nginx pod and load environment values from the above configmap keyvalcfgmap and exec into the pod and verify the environment variables and delete the pod // first run this command to save the pod yml kubectl run nginx --image=nginx --restart=Never --dry-run -o yaml > nginx-pod.ym
 
 answer:
-PS D:\DeskTop\DEVOPS_COURS> kubectl run nginx --image=nginx --restart=Never --dry-run -o yaml > nginx-pod.yaml
-PS D:\DeskTop\DEVOPS_COURS> kubectl run nginx --image=nginx --restart=Never --dry-run=client -o yaml > nginx-pod.yaml
+ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ cat > config.txt << EOF
+key1=value1
+key2=value2
+EOF
 
-first : nginx-pod.yaml:
+ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ kubectl create configmap keyvalcfgmap --from-file=config.txt
+configmap/keyvalcfgmap created
+
+ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ kubectl run nginx --image=nginx --restart=Never --dry-run=client -o yaml > nginx-pod.yaml
+
+ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ nano nginx-pod.yaml
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -38,6 +33,8 @@ spec:
   restartPolicy: Never
 status: {}
 
+
+after change:
 
 after change: nginx-pod.yaml:
 apiVersion: v1
@@ -56,5 +53,38 @@ spec:
     resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Never
+
+
+ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ kubectl apply -f nginx-pod.yaml
+pod/nginx created
+ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ kubectl get pods
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   0          7s
+
+ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ kubectl exec -it nginx -- printenv
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+HOSTNAME=nginx
+TERM=xterm
+config.txt=key1=value1
+key2=value2
+
+KUBERNETES_SERVICE_HOST=10.96.0.1
+KUBERNETES_SERVICE_PORT=443
+KUBERNETES_SERVICE_PORT_HTTPS=443
+KUBERNETES_PORT=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP_PROTO=tcp
+KUBERNETES_PORT_443_TCP_PORT=443
+KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1
+NGINX_VERSION=1.25.3
+NJS_VERSION=0.8.2
+PKG_RELEASE=1~bookworm
+HOME=/root
+ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ 
+
+
+
+
+
 
 
