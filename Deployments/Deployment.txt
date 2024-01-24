@@ -15,14 +15,14 @@ hr-web-app-57cd7b5799-nkfc5   1/1     Running   0          20s
 hr-web-app-57cd7b5799-pk7cw   1/1     Running   0          20s
 hr-web-app-57cd7b5799-zztfb   1/1     Running   0          20s
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl rollout status deployment hr-web-app
+PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout status deployment hr-web-app
 deployment "hr-web-app" successfully rolled out
-PS D:\DeskTop\DEVOPS_COURS>
+PS D:\DeskTop\DEVOPS_COURSE>
 
 3. Get the replicaset that created with this deployment 
 
 answer:
-PS D:\DeskTop\DEVOPS_COURS> kubectl get replicaset -l app=hr-web-app
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get replicaset -l app=hr-web-app
 NAME                    DESIRED   CURRENT   READY   AGE
 hr-web-app-57cd7b5799   5         5         5       2m17s
 
@@ -30,18 +30,18 @@ hr-web-app-57cd7b5799   5         5         5       2m17s
 4. EXPORT the yaml of the replicaset and pods of this deployment
 
 answer: 
-PS D:\DeskTop\DEVOPS_COURS> kubectl get replicaset -l app=hr-web-app -o yaml > replicaset.yaml
-PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -l app=hr-web-app -o yaml > pods.yaml
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get replicaset -l app=hr-web-app -o yaml > replicaset.yaml
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods -l app=hr-web-app -o yaml > pods.yaml
 
 ***the yaml files in the directory
 
 5. Delete the deployment you just created and watch all the pods are also being deleted
 
 answer:
-PS D:\DeskTop\DEVOPS_COURS> kubectl delete deployment hr-web-app --cascade=true --wait=true
+PS D:\DeskTop\DEVOPS_COURSE> kubectl delete deployment hr-web-app --cascade=true --wait=true
 warning: --cascade=true is deprecated (boolean value) and can be replaced with --cascade=background.
 deployment.apps "hr-web-app" deleted
-PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -l app=hr-web-app --watch
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods -l app=hr-web-app --watch
 NAME                          READY   STATUS        RESTARTS   AGE
 hr-web-app-57cd7b5799-d4x6f   1/1     Terminating   0          9m33s
 hr-web-app-57cd7b5799-lqh4b   1/1     Terminating   0          9m33s
@@ -73,14 +73,14 @@ hr-web-app-57cd7b5799-d4x6f   0/1     Terminating   0          9m48s
   a. add the port section (80)  and create the deployment 
 
 answer:
-PS D:\DeskTop\DEVOPS_COURS> kubectl create deploy webapp --image=nginx:1.17.1 --dry-run=client -o yaml > webapp.yaml
-PS D:\DeskTop\DEVOPS_COURS> kubectl apply -f webapp.yaml
+PS D:\DeskTop\DEVOPS_COURSE> kubectl create deploy webapp --image=nginx:1.17.1 --dry-run=client -o yaml > webapp.yaml
+PS D:\DeskTop\DEVOPS_COURSE> kubectl apply -f webapp.yaml
 deployment.apps/webapp created
-PS D:\DeskTop\DEVOPS_COURS> kubectl get pods
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods
 NAME                      READY   STATUS    RESTARTS   AGE
 webapp-6b4847f985-rc27p   1/1     Running   0          16s
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl describe pod webapp-6b4847f985-rc27p
+PS D:\DeskTop\DEVOPS_COURSE> kubectl describe pod webapp-6b4847f985-rc27p
 Name:             webapp-6b4847f985-rc27p
 Namespace:        default
 Priority:         0
@@ -139,10 +139,10 @@ Events:
 7. Update the deployment with the image version 1.17.4 and verify 
 
 answer:
-PS D:\DeskTop\DEVOPS_COURS> kubectl set image deployment webapp nginx-container=nginx:1.17.4
+PS D:\DeskTop\DEVOPS_COURSE> kubectl set image deployment webapp nginx-container=nginx:1.17.4
 deployment.apps/webapp image updated
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl describe pod webapp-7bddcc476d-5zngt
+PS D:\DeskTop\DEVOPS_COURSE> kubectl describe pod webapp-7bddcc476d-5zngt
 Name:             webapp-7bddcc476d-5zngt
 Namespace:        default
 Priority:         0
@@ -200,13 +200,13 @@ Events:
 8. Check the rollout history and make sure everything is ok after the update
 
 answer:
-PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp
+PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp
 deployment.apps/webapp
 REVISION  CHANGE-CAUSE
 1         <none>
 2         <none>
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp --revision=2
+PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp --revision=2
 deployment.apps/webapp with revision #2
 Pod Template:
   Labels:       app=webapp
@@ -220,7 +220,7 @@ Pod Template:
     Mounts:     <none>
   Volumes:      <none>
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp --revision=1
+PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp --revision=1
 deployment.apps/webapp with revision #1
 Pod Template:
   Labels:       app=webapp
@@ -237,14 +237,14 @@ Pod Template:
 9. Undo the deployment to the previous version 1.17.1 and verify Image has the previous version
 
 answer:
-PS D:\DeskTop\DEVOPS_COURS> kubectl rollout undo deployment webapp
+PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout undo deployment webapp
 deployment.apps/webapp rolled back
-PS D:\DeskTop\DEVOPS_COURS> kubectl rollout status deployment webapp
+PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout status deployment webapp
 deployment "webapp" successfully rolled out
-PS D:\DeskTop\DEVOPS_COURS> kubectl get pods
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods
 NAME                      READY   STATUS    RESTARTS   AGE
 webapp-6b4847f985-drbkl   1/1     Running   0          39s
-PS D:\DeskTop\DEVOPS_COURS> kubectl describe pod webapp-6b4847f985-drbkl
+PS D:\DeskTop\DEVOPS_COURSE> kubectl describe pod webapp-6b4847f985-drbkl
 Name:             webapp-6b4847f985-drbkl
 Namespace:        default
 Priority:         0
@@ -305,29 +305,29 @@ Events:
   d. update the deployment with the image version latest and check the history and verify nothing is going on
 
 answer:
-PS D:\DeskTop\DEVOPS_COURS> kubectl set image deployment webapp nginx-container=nginx:1.100
+PS D:\DeskTop\DEVOPS_COURSE> kubectl set image deployment webapp nginx-container=nginx:1.100
 deployment.apps/webapp image updated
-PS D:\DeskTop\DEVOPS_COURS> kubectl get pods
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods
 NAME                      READY   STATUS         RESTARTS   AGE
 webapp-5c6b5f4d67-fpmht   0/1     ErrImagePull   0          13s
 webapp-6b4847f985-drbkl   1/1     Running        0          3m26s
-PS D:\DeskTop\DEVOPS_COURS> kubectl rollout undo deployment webapp
+PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout undo deployment webapp
 deployment.apps/webapp rolled back
-PS D:\DeskTop\DEVOPS_COURS> kubectl rollout status deployment webapp
+PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout status deployment webapp
 deployment "webapp" successfully rolled out
-PS D:\DeskTop\DEVOPS_COURS\spring-petclinic-for-jb-project> kubectl get pods
+PS D:\DeskTop\DEVOPS_COURSE\spring-petclinic-for-jb-project> kubectl get pods
 NAME                      READY   STATUS    RESTARTS   AGE
 webapp-6b4847f985-drbkl   1/1     Running   0          4m3s
-PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp
+PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp
 deployment.apps/webapp
 REVISION  CHANGE-CAUSE
 2         <none>
 4         <none>
 5         <none>
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp --revision=7
+PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp --revision=7
 error: unable to find the specified revision
-PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp --revision=5
+PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp --revision=5
 deployment.apps/webapp with revision #5
 Pod Template:
   Labels:       app=webapp
@@ -341,9 +341,9 @@ Pod Template:
     Mounts:     <none>
   Volumes:      <none>
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl set image deployment webapp nginx-container=nginx:latest
+PS D:\DeskTop\DEVOPS_COURSE> kubectl set image deployment webapp nginx-container=nginx:latest
 deployment.apps/webapp image updated
-PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp
+PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp
 deployment.apps/webapp
 REVISION  CHANGE-CAUSE
 2         <none>
@@ -351,7 +351,7 @@ REVISION  CHANGE-CAUSE
 5         <none>
 6         <none>
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp --revision=6
+PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp --revision=6
 deployment.apps/webapp with revision #6
 Pod Template:
   Labels:       app=webapp
@@ -365,7 +365,7 @@ Pod Template:
     Mounts:     <none>
   Volumes:      <none>
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl get pods
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods
 NAME                      READY   STATUS    RESTARTS   AGE
 webapp-7bbf655778-rngcl   1/1     Running   0          52s
 
@@ -373,17 +373,17 @@ webapp-7bbf655778-rngcl   1/1     Running   0          52s
 11. Apply the autoscaling to this deployment with minimum 10 and maximum 20 replicas and target CPU of 85% and verify hpa is created and replicas are increased to 10 from 1 
 
 answer:
-PS D:\DeskTop\DEVOPS_COURS> kubectl autoscale deployment webapp --cpu-percent=85 --min=10 --max=20
+PS D:\DeskTop\DEVOPS_COURSE> kubectl autoscale deployment webapp --cpu-percent=85 --min=10 --max=20
 horizontalpodautoscaler.autoscaling/webapp autoscaled
-PS D:\DeskTop\DEVOPS_COURS> kubectl get hpa
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get hpa
 NAME     REFERENCE           TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
 webapp   Deployment/webapp   <unknown>/85%   10        20        1          42s
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl get deployment -w
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get deployment -w
 NAME     READY   UP-TO-DATE   AVAILABLE   AGE
 webapp   10/10   10           10          94m
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl get pods
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods
 NAME                      READY   STATUS    RESTARTS   AGE
 webapp-5d4644fc48-4vvx5   1/1     Running   0          3m54s
 webapp-5d4644fc48-9588t   1/1     Running   0          3m54s
@@ -400,9 +400,9 @@ webapp-5d4644fc48-xx25g   1/1     Running   0          3m54s
 13. Clean the cluster by deleting deployment and hpa you just created 
 
 answer:
-PS D:\DeskTop\DEVOPS_COURS> kubectl delete hpa webapp
+PS D:\DeskTop\DEVOPS_COURSE> kubectl delete hpa webapp
 horizontalpodautoscaler.autoscaling "webapp" deleted
-PS D:\DeskTop\DEVOPS_COURS> kubectl delete deployment webapp
+PS D:\DeskTop\DEVOPS_COURSE> kubectl delete deployment webapp
 deployment.apps "webapp" deleted
 
 14. Create a job and make it run 10 times one after one (run > exit > run >exit ..) using the following configuration: kubectl create job hello-job --image=busybox --dry-run -o yaml -- echo "Hello I am from job" > hello-job.yaml”
@@ -425,7 +425,7 @@ spec:
         command: ["/bin/sh", "-c", "echo 'Hello, I am from job'"]
       restartPolicy: Never
 
-PS D:\DeskTop\DEVOPS_COURS\spring-petclinic-for-jb-project> kubectl apply -f hello-job.yaml
+PS D:\DeskTop\DEVOPS_COURSE\spring-petclinic-for-jb-project> kubectl apply -f hello-job.yaml
 job.batch/hello-job created
 
 
