@@ -14,8 +14,7 @@ hr-web-app-57cd7b5799-lqh4b   1/1     Running   0          20s
 hr-web-app-57cd7b5799-nkfc5   1/1     Running   0          20s
 hr-web-app-57cd7b5799-pk7cw   1/1     Running   0          20s
 hr-web-app-57cd7b5799-zztfb   1/1     Running   0          20s
-PS D:\DeskTop\DEVOPS_COURS>
-PS D:\DeskTop\DEVOPS_COURS>
+
 PS D:\DeskTop\DEVOPS_COURS> kubectl rollout status deployment hr-web-app
 deployment "hr-web-app" successfully rolled out
 PS D:\DeskTop\DEVOPS_COURS>
@@ -26,7 +25,7 @@ answer:
 PS D:\DeskTop\DEVOPS_COURS> kubectl get replicaset -l app=hr-web-app
 NAME                    DESIRED   CURRENT   READY   AGE
 hr-web-app-57cd7b5799   5         5         5       2m17s
-PS D:\DeskTop\DEVOPS_COURS\spring-petclinic-for-jb-project>
+
 
 4. EXPORT the yaml of the replicaset and pods of this deployment
 
