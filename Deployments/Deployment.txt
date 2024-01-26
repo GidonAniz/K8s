@@ -8,29 +8,30 @@ a. Use the below command to create a yaml file.
 2. Get the deployment rollout status
 
 answer: 
-NAME                          READY   STATUS    RESTARTS   AGE
-hr-web-app-57cd7b5799-d4x6f   1/1     Running   0          20s
-hr-web-app-57cd7b5799-lqh4b   1/1     Running   0          20s
-hr-web-app-57cd7b5799-nkfc5   1/1     Running   0          20s
-hr-web-app-57cd7b5799-pk7cw   1/1     Running   0          20s
-hr-web-app-57cd7b5799-zztfb   1/1     Running   0          20s
 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout status deployment hr-web-app
-deployment "hr-web-app" successfully rolled out
-PS D:\DeskTop\DEVOPS_COURSE>
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pods 
+NAME                      READY   STATUS    RESTARTS   AGE
+webapp-78d6769cf8-d7c96   1/1     Running   0          84s
+webapp-78d6769cf8-l4mt2   1/1     Running   0          84s
+webapp-78d6769cf8-pt7m2   1/1     Running   0          84s
+webapp-78d6769cf8-w7sjv   1/1     Running   0          84s
+webapp-78d6769cf8-x9clv   1/1     Running   0          84s
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout status deployment/webapp
+deployment "webapp" successfully rolled out
 
 3. Get the replicaset that created with this deployment 
 
 answer:
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get replicaset -l app=hr-web-app
-NAME                    DESIRED   CURRENT   READY   AGE
-hr-web-app-57cd7b5799   5         5         5       2m17s
+PS D:\DeskTop\DEVOPS_COURS> kubectl get replicaset -l app=webapp
+NAME                DESIRED   CURRENT   READY   AGE
+webapp-78d6769cf8   5         5         5       2m43s
 
 
 4. EXPORT the yaml of the replicaset and pods of this deployment
 
 answer: 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get replicaset -l app=hr-web-app -o yaml > replicaset.yaml
+kubectl get replicaset -l app=webapp -o yaml > replicaset_webapp.yaml
 PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods -l app=hr-web-app -o yaml > pods.yaml
 
 ***the yaml files in the directory
