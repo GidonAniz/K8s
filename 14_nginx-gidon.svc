@@ -1,0 +1,7 @@
+PS D:\DeskTop\DEVOPS_COURS> kubectl exec -it busybox-dns -- cat /root/nginx-gidon.svc   
+Server:    10.96.0.10
+Address 1: 10.96.0.10 kube-dns.kube-system.svc.cluster.local
+
+Name:      nginx-resolver-service
+Address 1: 10.99.96.11 nginx-resolver-service.default.svc.cluster.local
+PS D:\DeskTop\DEVOPS_COURS>
