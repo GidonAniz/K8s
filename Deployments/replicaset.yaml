@@ -7,39 +7,39 @@ items:
       deployment.kubernetes.io/desired-replicas: "5"
       deployment.kubernetes.io/max-replicas: "7"
       deployment.kubernetes.io/revision: "1"
-    creationTimestamp: "2024-01-19T17:20:16Z"
+    creationTimestamp: "2024-01-26T21:32:02Z"
     generation: 1
     labels:
-      app: hr-web-app
-      pod-template-hash: 57cd7b5799
-    name: hr-web-app-57cd7b5799
+      app: webapp
+      pod-template-hash: 78d6769cf8
+    name: webapp-78d6769cf8
     namespace: default
     ownerReferences:
     - apiVersion: apps/v1
       blockOwnerDeletion: true
       controller: true
       kind: Deployment
-      name: hr-web-app
-      uid: 131d83b0-cadc-4b76-b6ad-6a57019d9b79
-    resourceVersion: "363455"
-    uid: 706a293a-a142-418a-810e-b4ac4e246480
+      name: webapp
+      uid: f6bf69fb-d157-4c19-8cfb-42383c85b9f8
+    resourceVersion: "539806"
+    uid: 021b28e3-dcd5-47f9-951a-ac4bfcddc4e7
   spec:
     replicas: 5
     selector:
       matchLabels:
-        app: hr-web-app
-        pod-template-hash: 57cd7b5799
+        app: webapp
+        pod-template-hash: 78d6769cf8
     template:
       metadata:
         creationTimestamp: null
         labels:
-          app: hr-web-app
-          pod-template-hash: 57cd7b5799
+          app: webapp
+          pod-template-hash: 78d6769cf8
       spec:
         containers:
-        - image: kodekloud/webapp-color
+        - image: nginx
           imagePullPolicy: Always
-          name: webapp-color
+          name: nginx
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
