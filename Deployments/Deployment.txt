@@ -421,7 +421,7 @@ spec:
         command: ["/bin/sh", "-c", "echo 'Hello, I am from job'"]
       restartPolicy: Never
 
-PS D:\DeskTop\DEVOPS_COURSE\spring-petclinic-for-jb-project> kubectl apply -f hello-job.yaml
+PS D:\DeskTop\DEVOPS_COURSE> kubectl apply -f hello-job.yaml
 job.batch/hello-job created
 
 
