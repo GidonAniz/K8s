@@ -31,17 +31,17 @@ webapp-78d6769cf8   5         5         5       2m43s
 4. EXPORT the yaml of the replicaset and pods of this deployment
 
 answer: 
-PS D:\DeskTop\DEVOPS_COURSEEE> kubectl get replicaset -l app=webapp -o yaml > replicaset_webapp.yaml
-PS D:\DeskTop\DEVOPS_COURSEEE> kubectl get pods -l app=webapp -o yaml > pods_webapp.yaml
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get replicaset -l app=webapp -o yaml > replicaset_webapp.yaml
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods -l app=webapp -o yaml > pods_webapp.yaml
 
 ***the yaml files in the directory
 
 5. Delete the deployment you just created and watch all the pods are also being deleted
 
 answer:
-PS D:\DeskTop\DEVOPS_COURSEEE> kubectl delete deploy webapp --cascade=background --wait=true
+PS D:\DeskTop\DEVOPS_COURSE> kubectl delete deploy webapp --cascade=background --wait=true
 deployment.apps "webapp" deleted
-PS D:\DeskTop\DEVOPS_COURSEEE> kubectl get pods -w
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods -w
 NAME                      READY   STATUS        RESTARTS   AGE
 webapp-78d6769cf8-jh76c   0/1     Terminating   0          33s
 webapp-78d6769cf8-lzftj   0/1     Terminating   0          33s
