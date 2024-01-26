@@ -39,35 +39,30 @@ PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -l app=webapp -o yaml > pods_webapp
 5. Delete the deployment you just created and watch all the pods are also being deleted
 
 answer:
-PS D:\DeskTop\DEVOPS_COURSE> kubectl delete deployment hr-web-app --cascade=true --wait=true
-warning: --cascade=true is deprecated (boolean value) and can be replaced with --cascade=background.
-deployment.apps "hr-web-app" deleted
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods -l app=hr-web-app --watch
-NAME                          READY   STATUS        RESTARTS   AGE
-hr-web-app-57cd7b5799-d4x6f   1/1     Terminating   0          9m33s
-hr-web-app-57cd7b5799-lqh4b   1/1     Terminating   0          9m33s
-hr-web-app-57cd7b5799-nkfc5   1/1     Terminating   0          9m33s
-hr-web-app-57cd7b5799-pk7cw   1/1     Terminating   0          9m33s
-hr-web-app-57cd7b5799-zztfb   1/1     Terminating   0          9m33s
-hr-web-app-57cd7b5799-nkfc5   0/1     Terminating   0          9m46s
-hr-web-app-57cd7b5799-pk7cw   0/1     Terminating   0          9m46s
-hr-web-app-57cd7b5799-lqh4b   0/1     Terminating   0          9m46s
-hr-web-app-57cd7b5799-nkfc5   0/1     Terminating   0          9m46s
-hr-web-app-57cd7b5799-pk7cw   0/1     Terminating   0          9m47s
-hr-web-app-57cd7b5799-d4x6f   0/1     Terminating   0          9m47s
-hr-web-app-57cd7b5799-lqh4b   0/1     Terminating   0          9m47s
-hr-web-app-57cd7b5799-lqh4b   0/1     Terminating   0          9m47s
-hr-web-app-57cd7b5799-lqh4b   0/1     Terminating   0          9m47s
-hr-web-app-57cd7b5799-zztfb   0/1     Terminating   0          9m47s
-hr-web-app-57cd7b5799-nkfc5   0/1     Terminating   0          9m47s
-hr-web-app-57cd7b5799-nkfc5   0/1     Terminating   0          9m47s
-hr-web-app-57cd7b5799-pk7cw   0/1     Terminating   0          9m47s
-hr-web-app-57cd7b5799-pk7cw   0/1     Terminating   0          9m47s
-hr-web-app-57cd7b5799-zztfb   0/1     Terminating   0          9m48s
-hr-web-app-57cd7b5799-zztfb   0/1     Terminating   0          9m48s
-hr-web-app-57cd7b5799-zztfb   0/1     Terminating   0          9m48s
-hr-web-app-57cd7b5799-d4x6f   0/1     Terminating   0          9m48s
-hr-web-app-57cd7b5799-d4x6f   0/1     Terminating   0          9m48s
+PS D:\DeskTop\DEVOPS_COURS> kubectl delete deploy webapp --cascade=background --wait=true
+deployment.apps "webapp" deleted
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -w
+NAME                      READY   STATUS        RESTARTS   AGE
+webapp-78d6769cf8-jh76c   0/1     Terminating   0          33s
+webapp-78d6769cf8-lzftj   0/1     Terminating   0          33s
+webapp-78d6769cf8-plqqt   0/1     Terminating   0          33s
+webapp-78d6769cf8-pm4tj   0/1     Terminating   0          33s
+webapp-78d6769cf8-wxfxd   0/1     Terminating   0          33s
+webapp-78d6769cf8-pm4tj   0/1     Terminating   0          33s
+webapp-78d6769cf8-wxfxd   0/1     Terminating   0          33s
+webapp-78d6769cf8-wxfxd   0/1     Terminating   0          33s
+webapp-78d6769cf8-wxfxd   0/1     Terminating   0          33s
+webapp-78d6769cf8-pm4tj   0/1     Terminating   0          33s
+webapp-78d6769cf8-pm4tj   0/1     Terminating   0          33s
+webapp-78d6769cf8-plqqt   0/1     Terminating   0          33s
+webapp-78d6769cf8-plqqt   0/1     Terminating   0          33s
+webapp-78d6769cf8-plqqt   0/1     Terminating   0          33s
+webapp-78d6769cf8-jh76c   0/1     Terminating   0          33s
+webapp-78d6769cf8-jh76c   0/1     Terminating   0          33s
+webapp-78d6769cf8-jh76c   0/1     Terminating   0          33s
+webapp-78d6769cf8-lzftj   0/1     Terminating   0          33s
+webapp-78d6769cf8-lzftj   0/1     Terminating   0          33s
+webapp-78d6769cf8-lzftj   0/1     Terminating   0          33s
 
 6. Create a deployment of webapp with image nginx:1.17.1 with container port 80 and verify the image version 
  . kubectl create deploy webapp --image=nginx:1.17.1 --dry-run -o yaml > webapp.yaml 
