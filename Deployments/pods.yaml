@@ -3,33 +3,33 @@ items:
 - apiVersion: v1
   kind: Pod
   metadata:
-    creationTimestamp: "2024-01-19T17:20:16Z"
-    generateName: hr-web-app-57cd7b5799-
+    creationTimestamp: "2024-01-26T21:32:02Z"
+    generateName: webapp-78d6769cf8-
     labels:
-      app: hr-web-app
-      pod-template-hash: 57cd7b5799
-    name: hr-web-app-57cd7b5799-d4x6f
+      app: webapp
+      pod-template-hash: 78d6769cf8
+    name: webapp-78d6769cf8-d7c96
     namespace: default
     ownerReferences:
     - apiVersion: apps/v1
       blockOwnerDeletion: true
       controller: true
       kind: ReplicaSet
-      name: hr-web-app-57cd7b5799
-      uid: 706a293a-a142-418a-810e-b4ac4e246480
-    resourceVersion: "363438"
-    uid: eb55c7fb-7b4f-4bc9-accc-1e04cb17963d
+      name: webapp-78d6769cf8
+      uid: 021b28e3-dcd5-47f9-951a-ac4bfcddc4e7
+    resourceVersion: "539789"
+    uid: 2c92761e-a989-4324-803b-2a2b8da97ec6
   spec:
     containers:
-    - image: kodekloud/webapp-color
+    - image: nginx
       imagePullPolicy: Always
-      name: webapp-color
+      name: nginx
       resources: {}
       terminationMessagePath: /dev/termination-log
       terminationMessagePolicy: File
       volumeMounts:
       - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-        name: kube-api-access-c2vnh
+        name: kube-api-access-bgpxc
         readOnly: true
     dnsPolicy: ClusterFirst
     enableServiceLinks: true
@@ -52,7 +52,7 @@ items:
       operator: Exists
       tolerationSeconds: 300
     volumes:
-    - name: kube-api-access-c2vnh
+    - name: kube-api-access-bgpxc
       projected:
         defaultMode: 420
         sources:
@@ -73,70 +73,70 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:16Z"
+      lastTransitionTime: "2024-01-26T21:32:02Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:32Z"
+      lastTransitionTime: "2024-01-26T21:32:09Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:32Z"
+      lastTransitionTime: "2024-01-26T21:32:09Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:16Z"
+      lastTransitionTime: "2024-01-26T21:32:02Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://8cf765bbca37d99a912270859b755cf848e3a537116a5b0f9760ef2f0e096226
-      image: kodekloud/webapp-color:latest
-      imageID: docker-pullable://kodekloud/webapp-color@sha256:99c3821ea49b89c7a22d3eebab5c2e1ec651452e7675af243485034a72eb1423
+    - containerID: docker://592629fc7848508ec04cce73e950a5eaf55886ad95617610a93b79993175b59c
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:4c0fdaa8b6341bfdeca5f18f7837462c80cff90527ee35ef185571e1c327beac
       lastState: {}
-      name: webapp-color
+      name: nginx
       ready: true
       restartCount: 0
       started: true
       state:
         running:
-          startedAt: "2024-01-19T17:20:31Z"
-    hostIP: 192.168.65.4
+          startedAt: "2024-01-26T21:32:09Z"
+    hostIP: 192.168.65.3
     phase: Running
-    podIP: 10.1.0.64
+    podIP: 10.1.0.149
     podIPs:
-    - ip: 10.1.0.64
+    - ip: 10.1.0.149
     qosClass: BestEffort
-    startTime: "2024-01-19T17:20:16Z"
+    startTime: "2024-01-26T21:32:02Z"
 - apiVersion: v1
   kind: Pod
   metadata:
-    creationTimestamp: "2024-01-19T17:20:16Z"
-    generateName: hr-web-app-57cd7b5799-
+    creationTimestamp: "2024-01-26T21:32:02Z"
+    generateName: webapp-78d6769cf8-
     labels:
-      app: hr-web-app
-      pod-template-hash: 57cd7b5799
-    name: hr-web-app-57cd7b5799-lqh4b
+      app: webapp
+      pod-template-hash: 78d6769cf8
+    name: webapp-78d6769cf8-l4mt2
     namespace: default
     ownerReferences:
     - apiVersion: apps/v1
       blockOwnerDeletion: true
       controller: true
       kind: ReplicaSet
-      name: hr-web-app-57cd7b5799
-      uid: 706a293a-a142-418a-810e-b4ac4e246480
-    resourceVersion: "363446"
-    uid: 8e76fc67-9dd6-4de3-9895-82c2491a3d1c
+      name: webapp-78d6769cf8
+      uid: 021b28e3-dcd5-47f9-951a-ac4bfcddc4e7
+    resourceVersion: "539805"
+    uid: 4605e3f5-e57b-47c4-a609-efbfa61dd645
   spec:
     containers:
-    - image: kodekloud/webapp-color
+    - image: nginx
       imagePullPolicy: Always
-      name: webapp-color
+      name: nginx
       resources: {}
       terminationMessagePath: /dev/termination-log
       terminationMessagePolicy: File
       volumeMounts:
       - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-        name: kube-api-access-57fs4
+        name: kube-api-access-xpqhw
         readOnly: true
     dnsPolicy: ClusterFirst
     enableServiceLinks: true
@@ -159,7 +159,7 @@ items:
       operator: Exists
       tolerationSeconds: 300
     volumes:
-    - name: kube-api-access-57fs4
+    - name: kube-api-access-xpqhw
       projected:
         defaultMode: 420
         sources:
@@ -180,70 +180,70 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:16Z"
+      lastTransitionTime: "2024-01-26T21:32:02Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:33Z"
+      lastTransitionTime: "2024-01-26T21:32:12Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:33Z"
+      lastTransitionTime: "2024-01-26T21:32:12Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:16Z"
+      lastTransitionTime: "2024-01-26T21:32:02Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://4a27ba07e3c892bbc3bba6fafe8f73b166d16bd05f418cf5909e72cf01572d06
-      image: kodekloud/webapp-color:latest
-      imageID: docker-pullable://kodekloud/webapp-color@sha256:99c3821ea49b89c7a22d3eebab5c2e1ec651452e7675af243485034a72eb1423
+    - containerID: docker://5369ebc5610e192ba15f18db62d03f515dd55f8ea199a93ae38759db3ce6ebde
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:4c0fdaa8b6341bfdeca5f18f7837462c80cff90527ee35ef185571e1c327beac
       lastState: {}
-      name: webapp-color
+      name: nginx
       ready: true
       restartCount: 0
       started: true
       state:
         running:
-          startedAt: "2024-01-19T17:20:33Z"
-    hostIP: 192.168.65.4
+          startedAt: "2024-01-26T21:32:12Z"
+    hostIP: 192.168.65.3
     phase: Running
-    podIP: 10.1.0.65
+    podIP: 10.1.0.151
     podIPs:
-    - ip: 10.1.0.65
+    - ip: 10.1.0.151
     qosClass: BestEffort
-    startTime: "2024-01-19T17:20:16Z"
+    startTime: "2024-01-26T21:32:02Z"
 - apiVersion: v1
   kind: Pod
   metadata:
-    creationTimestamp: "2024-01-19T17:20:16Z"
-    generateName: hr-web-app-57cd7b5799-
+    creationTimestamp: "2024-01-26T21:32:02Z"
+    generateName: webapp-78d6769cf8-
     labels:
-      app: hr-web-app
-      pod-template-hash: 57cd7b5799
-    name: hr-web-app-57cd7b5799-nkfc5
+      app: webapp
+      pod-template-hash: 78d6769cf8
+    name: webapp-78d6769cf8-pt7m2
     namespace: default
     ownerReferences:
     - apiVersion: apps/v1
       blockOwnerDeletion: true
       controller: true
       kind: ReplicaSet
-      name: hr-web-app-57cd7b5799
-      uid: 706a293a-a142-418a-810e-b4ac4e246480
-    resourceVersion: "363454"
-    uid: c94c848e-6694-4fd1-8412-325560991e2b
+      name: webapp-78d6769cf8
+      uid: 021b28e3-dcd5-47f9-951a-ac4bfcddc4e7
+    resourceVersion: "539775"
+    uid: 99c4ce79-7f9e-425b-b1f3-16b71fe15c6c
   spec:
     containers:
-    - image: kodekloud/webapp-color
+    - image: nginx
       imagePullPolicy: Always
-      name: webapp-color
+      name: nginx
       resources: {}
       terminationMessagePath: /dev/termination-log
       terminationMessagePolicy: File
       volumeMounts:
       - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-        name: kube-api-access-xb7qr
+        name: kube-api-access-7zt76
         readOnly: true
     dnsPolicy: ClusterFirst
     enableServiceLinks: true
@@ -266,7 +266,7 @@ items:
       operator: Exists
       tolerationSeconds: 300
     volumes:
-    - name: kube-api-access-xb7qr
+    - name: kube-api-access-7zt76
       projected:
         defaultMode: 420
         sources:
@@ -287,70 +287,70 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:16Z"
+      lastTransitionTime: "2024-01-26T21:32:02Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:35Z"
+      lastTransitionTime: "2024-01-26T21:32:06Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:35Z"
+      lastTransitionTime: "2024-01-26T21:32:06Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:16Z"
+      lastTransitionTime: "2024-01-26T21:32:02Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://c1243259f687242306681f1a9962414a28345a6ebb8602e7630bf75a673260ad
-      image: kodekloud/webapp-color:latest
-      imageID: docker-pullable://kodekloud/webapp-color@sha256:99c3821ea49b89c7a22d3eebab5c2e1ec651452e7675af243485034a72eb1423
+    - containerID: docker://02c152a738161e52cb031eec5d6776e46ec0a9d3a13e03de4efe35eff9b7ae32
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:4c0fdaa8b6341bfdeca5f18f7837462c80cff90527ee35ef185571e1c327beac
       lastState: {}
-      name: webapp-color
+      name: nginx
       ready: true
       restartCount: 0
       started: true
       state:
         running:
-          startedAt: "2024-01-19T17:20:34Z"
-    hostIP: 192.168.65.4
+          startedAt: "2024-01-26T21:32:06Z"
+    hostIP: 192.168.65.3
     phase: Running
-    podIP: 10.1.0.66
+    podIP: 10.1.0.147
     podIPs:
-    - ip: 10.1.0.66
+    - ip: 10.1.0.147
     qosClass: BestEffort
-    startTime: "2024-01-19T17:20:16Z"
+    startTime: "2024-01-26T21:32:02Z"
 - apiVersion: v1
   kind: Pod
   metadata:
-    creationTimestamp: "2024-01-19T17:20:16Z"
-    generateName: hr-web-app-57cd7b5799-
+    creationTimestamp: "2024-01-26T21:32:02Z"
+    generateName: webapp-78d6769cf8-
     labels:
-      app: hr-web-app
-      pod-template-hash: 57cd7b5799
-    name: hr-web-app-57cd7b5799-pk7cw
+      app: webapp
+      pod-template-hash: 78d6769cf8
+    name: webapp-78d6769cf8-w7sjv
     namespace: default
     ownerReferences:
     - apiVersion: apps/v1
       blockOwnerDeletion: true
       controller: true
       kind: ReplicaSet
-      name: hr-web-app-57cd7b5799
-      uid: 706a293a-a142-418a-810e-b4ac4e246480
-    resourceVersion: "363422"
-    uid: 717148cc-13b5-4297-b5e5-5d39adede74d
+      name: webapp-78d6769cf8
+      uid: 021b28e3-dcd5-47f9-951a-ac4bfcddc4e7
+    resourceVersion: "539781"
+    uid: 452cdee8-9d30-4c85-a56c-a5a9634dc316
   spec:
     containers:
-    - image: kodekloud/webapp-color
+    - image: nginx
       imagePullPolicy: Always
-      name: webapp-color
+      name: nginx
       resources: {}
       terminationMessagePath: /dev/termination-log
       terminationMessagePolicy: File
       volumeMounts:
       - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-        name: kube-api-access-wzpfh
+        name: kube-api-access-dpr79
         readOnly: true
     dnsPolicy: ClusterFirst
     enableServiceLinks: true
@@ -373,7 +373,7 @@ items:
       operator: Exists
       tolerationSeconds: 300
     volumes:
-    - name: kube-api-access-wzpfh
+    - name: kube-api-access-dpr79
       projected:
         defaultMode: 420
         sources:
@@ -394,70 +394,70 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:16Z"
+      lastTransitionTime: "2024-01-26T21:32:02Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:29Z"
+      lastTransitionTime: "2024-01-26T21:32:07Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:29Z"
+      lastTransitionTime: "2024-01-26T21:32:07Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:16Z"
+      lastTransitionTime: "2024-01-26T21:32:02Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://719c00f421411c7c1c8c3caef062b83395de3fb1c9dd8b24a1366ced128985a8
-      image: kodekloud/webapp-color:latest
-      imageID: docker-pullable://kodekloud/webapp-color@sha256:99c3821ea49b89c7a22d3eebab5c2e1ec651452e7675af243485034a72eb1423
+    - containerID: docker://905a987389bc08e5fcfb6da9239d1729303700f8c25419e4c50248c66e572b97
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:4c0fdaa8b6341bfdeca5f18f7837462c80cff90527ee35ef185571e1c327beac
       lastState: {}
-      name: webapp-color
+      name: nginx
       ready: true
       restartCount: 0
       started: true
       state:
         running:
-          startedAt: "2024-01-19T17:20:28Z"
-    hostIP: 192.168.65.4
+          startedAt: "2024-01-26T21:32:07Z"
+    hostIP: 192.168.65.3
     phase: Running
-    podIP: 10.1.0.62
+    podIP: 10.1.0.150
     podIPs:
-    - ip: 10.1.0.62
+    - ip: 10.1.0.150
     qosClass: BestEffort
-    startTime: "2024-01-19T17:20:16Z"
+    startTime: "2024-01-26T21:32:02Z"
 - apiVersion: v1
   kind: Pod
   metadata:
-    creationTimestamp: "2024-01-19T17:20:16Z"
-    generateName: hr-web-app-57cd7b5799-
+    creationTimestamp: "2024-01-26T21:32:02Z"
+    generateName: webapp-78d6769cf8-
     labels:
-      app: hr-web-app
-      pod-template-hash: 57cd7b5799
-    name: hr-web-app-57cd7b5799-zztfb
+      app: webapp
+      pod-template-hash: 78d6769cf8
+    name: webapp-78d6769cf8-x9clv
     namespace: default
     ownerReferences:
     - apiVersion: apps/v1
       blockOwnerDeletion: true
       controller: true
       kind: ReplicaSet
-      name: hr-web-app-57cd7b5799
-      uid: 706a293a-a142-418a-810e-b4ac4e246480
-    resourceVersion: "363429"
-    uid: ae5b95ae-7a75-47bb-8197-242f48cc6986
+      name: webapp-78d6769cf8
+      uid: 021b28e3-dcd5-47f9-951a-ac4bfcddc4e7
+    resourceVersion: "539797"
+    uid: 6ed184fa-29eb-46b6-80fb-6ffb76671474
   spec:
     containers:
-    - image: kodekloud/webapp-color
+    - image: nginx
       imagePullPolicy: Always
-      name: webapp-color
+      name: nginx
       resources: {}
       terminationMessagePath: /dev/termination-log
       terminationMessagePolicy: File
       volumeMounts:
       - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-        name: kube-api-access-4bnfd
+        name: kube-api-access-sstsl
         readOnly: true
     dnsPolicy: ClusterFirst
     enableServiceLinks: true
@@ -480,7 +480,7 @@ items:
       operator: Exists
       tolerationSeconds: 300
     volumes:
-    - name: kube-api-access-4bnfd
+    - name: kube-api-access-sstsl
       projected:
         defaultMode: 420
         sources:
@@ -501,40 +501,40 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:16Z"
+      lastTransitionTime: "2024-01-26T21:32:02Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:30Z"
+      lastTransitionTime: "2024-01-26T21:32:11Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:30Z"
+      lastTransitionTime: "2024-01-26T21:32:11Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-01-19T17:20:16Z"
+      lastTransitionTime: "2024-01-26T21:32:02Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://78b2a464883c78a394ff0d436199923677b0d2b08ed4c59b67c71b8c6e3dfb35
-      image: kodekloud/webapp-color:latest
-      imageID: docker-pullable://kodekloud/webapp-color@sha256:99c3821ea49b89c7a22d3eebab5c2e1ec651452e7675af243485034a72eb1423
+    - containerID: docker://470510506a1b851c80a52f036098b44262294bdf98b878e6393b1f0c2a33a393
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:4c0fdaa8b6341bfdeca5f18f7837462c80cff90527ee35ef185571e1c327beac
       lastState: {}
-      name: webapp-color
+      name: nginx
       ready: true
       restartCount: 0
       started: true
       state:
         running:
-          startedAt: "2024-01-19T17:20:30Z"
-    hostIP: 192.168.65.4
+          startedAt: "2024-01-26T21:32:11Z"
+    hostIP: 192.168.65.3
     phase: Running
-    podIP: 10.1.0.63
+    podIP: 10.1.0.148
     podIPs:
-    - ip: 10.1.0.63
+    - ip: 10.1.0.148
     qosClass: BestEffort
-    startTime: "2024-01-19T17:20:16Z"
+    startTime: "2024-01-26T21:32:02Z"
 kind: List
 metadata:
   resourceVersion: ""
