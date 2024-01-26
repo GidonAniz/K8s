@@ -9,7 +9,7 @@ a. Use the below command to create a yaml file.
 
 answer: 
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl get pods 
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods 
 NAME                      READY   STATUS    RESTARTS   AGE
 webapp-78d6769cf8-d7c96   1/1     Running   0          84s
 webapp-78d6769cf8-l4mt2   1/1     Running   0          84s
@@ -17,13 +17,13 @@ webapp-78d6769cf8-pt7m2   1/1     Running   0          84s
 webapp-78d6769cf8-w7sjv   1/1     Running   0          84s
 webapp-78d6769cf8-x9clv   1/1     Running   0          84s
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl rollout status deployment/webapp
+PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout status deployment/webapp
 deployment "webapp" successfully rolled out
 
 3. Get the replicaset that created with this deployment 
 
 answer:
-PS D:\DeskTop\DEVOPS_COURS> kubectl get replicaset -l app=webapp
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get replicaset -l app=webapp
 NAME                DESIRED   CURRENT   READY   AGE
 webapp-78d6769cf8   5         5         5       2m43s
 
@@ -31,17 +31,17 @@ webapp-78d6769cf8   5         5         5       2m43s
 4. EXPORT the yaml of the replicaset and pods of this deployment
 
 answer: 
-PS D:\DeskTop\DEVOPS_COURS> kubectl get replicaset -l app=webapp -o yaml > replicaset_webapp.yaml
-PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -l app=webapp -o yaml > pods_webapp.yaml
+PS D:\DeskTop\DEVOPS_COURSEEE> kubectl get replicaset -l app=webapp -o yaml > replicaset_webapp.yaml
+PS D:\DeskTop\DEVOPS_COURSEEE> kubectl get pods -l app=webapp -o yaml > pods_webapp.yaml
 
 ***the yaml files in the directory
 
 5. Delete the deployment you just created and watch all the pods are also being deleted
 
 answer:
-PS D:\DeskTop\DEVOPS_COURS> kubectl delete deploy webapp --cascade=background --wait=true
+PS D:\DeskTop\DEVOPS_COURSEEE> kubectl delete deploy webapp --cascade=background --wait=true
 deployment.apps "webapp" deleted
-PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -w
+PS D:\DeskTop\DEVOPS_COURSEEE> kubectl get pods -w
 NAME                      READY   STATUS        RESTARTS   AGE
 webapp-78d6769cf8-jh76c   0/1     Terminating   0          33s
 webapp-78d6769cf8-lzftj   0/1     Terminating   0          33s
