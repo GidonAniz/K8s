@@ -31,8 +31,8 @@ webapp-78d6769cf8   5         5         5       2m43s
 4. EXPORT the yaml of the replicaset and pods of this deployment
 
 answer: 
-kubectl get replicaset -l app=webapp -o yaml > replicaset_webapp.yaml
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods -l app=hr-web-app -o yaml > pods.yaml
+PS D:\DeskTop\DEVOPS_COURS> kubectl get replicaset -l app=webapp -o yaml > replicaset_webapp.yaml
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -l app=webapp -o yaml > pods_webapp.yaml
 
 ***the yaml files in the directory
 
