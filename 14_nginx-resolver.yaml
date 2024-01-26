@@ -8,27 +8,33 @@ spec:
     image: nginx
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-resolver-service
 spec:
   selector:
-    app: nginx-resolver
+    pod: nginx-resolver
   ports:
   - protocol: TCP
     port: 80
     targetPort: 80
 
 ---
+
 apiVersion: v1
 kind: Pod
 metadata:
-  name: dnsutils
+  name: busybox-dns
 spec:
   containers:
-  - name: dnsutils
+  - name: busybox
     image: busybox:1.28
-    command: ['nslookup', 'nginx-resolver-service']
-    imagePullPolicy: IfNotPresent
-
+    command: ["/bin/sh", "-c", "while true; do nslookup nginx-resolver-service > /root/nginx-yourname.svc; nslookup nginx-resolver > /root/nginx-yourname.pod; sleep 60; done"]
+    volumeMounts:
+    - name: root-volume
+      mountPath: /root
+  volumes:
+  - name: root-volume
+    emptyDir: {}
