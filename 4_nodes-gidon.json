@@ -1,120 +1,86 @@
- "apiVersion": "v1",
+{
+    "apiVersion": "v1",
     "items": [
         {
             "apiVersion": "v1",
             "kind": "Node",
             "metadata": {
                 "annotations": {
-                    "csi.volume.kubernetes.io/nodeid": "{\"ebs.csi.aws.com\":\"i-0a761022e68b9c91d\"}",
+                    "kubeadm.alpha.kubernetes.io/cri-socket": "unix:///var/run/cri-dockerd.sock",
                     "node.alpha.kubernetes.io/ttl": "0",
-                    "projectcalico.org/IPv4Address": "172.31.15.158/20",
-                    "projectcalico.org/IPv4IPIPTunnelAddr": "100.118.165.130",
                     "volumes.kubernetes.io/controller-managed-attach-detach": "true"
                 },
-                "creationTimestamp": "2024-01-14T16:02:34Z",
+                "creationTimestamp": "2024-01-19T19:01:42Z",
                 "labels": {
                     "beta.kubernetes.io/arch": "amd64",
-                    "beta.kubernetes.io/instance-type": "t3a.2xlarge",
                     "beta.kubernetes.io/os": "linux",
-                    "failure-domain.beta.kubernetes.io/region": "eu-west-1",
-                    "failure-domain.beta.kubernetes.io/zone": "eu-west-1b",
                     "kubernetes.io/arch": "amd64",
-                    "kubernetes.io/hostname": "i-0a761022e68b9c91d",
+                    "kubernetes.io/hostname": "docker-desktop",
                     "kubernetes.io/os": "linux",
-                    "node-role.kubernetes.io/node": "",
-                    "node-role.kubernetes.io/spot-worker": "true",
-                    "node.kubernetes.io/instance-type": "t3a.2xlarge",
-                    "topology.ebs.csi.aws.com/zone": "eu-west-1b",
-                    "topology.kubernetes.io/region": "eu-west-1",
-                    "topology.kubernetes.io/zone": "eu-west-1b"
+                    "node-role.kubernetes.io/control-plane": "",
+                    "node.kubernetes.io/exclude-from-external-load-balancers": ""
                 },
-                "name": "i-0a761022e68b9c91d",
-                "resourceVersion": "9344",
-                "uid": "815c0532-5bbb-4f5d-ae55-7fe464b02a96"
+                "name": "docker-desktop",
+                "resourceVersion": "529011",
+                "uid": "8771ab49-d73a-4d2e-9a6c-799865417780"
             },
-            "spec": {
-                "podCIDR": "100.96.1.0/24",
-                "podCIDRs": [
-                    "100.96.1.0/24"
-                ],
-                "providerID": "aws:///eu-west-1b/i-0a761022e68b9c91d"
-            },
+            "spec": {},
             "status": {
                 "addresses": [
                     {
-                        "address": "172.31.15.158",
+                        "address": "192.168.65.3",
                         "type": "InternalIP"
                     },
                     {
-                        "address": "34.242.136.156",
-                        "type": "ExternalIP"
-                    },
-                    {
-                        "address": "ip-172-31-15-158.eu-west-1.compute.internal",
-                        "type": "InternalDNS"
-                    },
-                    {
-                        "address": "ip-172-31-15-158.eu-west-1.compute.internal",
+                        "address": "docker-desktop",
                         "type": "Hostname"
-                    },
-                    {
-                        "address": "ec2-34-242-136-156.eu-west-1.compute.amazonaws.com",
-                        "type": "ExternalDNS"
                     }
                 ],
                 "allocatable": {
-                    "cpu": "8",
-                    "ephemeral-storage": "14809713845",
+                    "cpu": "16",
+                    "ephemeral-storage": "972991057538",
                     "hugepages-1Gi": "0",
                     "hugepages-2Mi": "0",
-                    "memory": "32498208Ki",
+                    "memory": "16232772Ki",
                     "pods": "110"
                 },
                 "capacity": {
-                    "cpu": "8",
-                    "ephemeral-storage": "16069568Ki",
+                    "cpu": "16",
+                    "ephemeral-storage": "1055762868Ki",
                     "hugepages-1Gi": "0",
                     "hugepages-2Mi": "0",
-                    "memory": "32600608Ki",
+                    "memory": "16335172Ki",
                     "pods": "110"
                 },
                 "conditions": [
                     {
-                        "lastHeartbeatTime": "2024-01-14T16:02:55Z",
-                        "lastTransitionTime": "2024-01-14T16:02:55Z",
-                        "message": "Calico is running on this node",
-                        "reason": "CalicoIsUp",
-                        "status": "False",
-                        "type": "NetworkUnavailable"
-                    },
-                    {
-                        "lastHeartbeatTime": "2024-01-14T16:53:56Z",
-                        "lastTransitionTime": "2024-01-14T16:02:34Z",
+                        "lastHeartbeatTime": "2024-01-26T19:24:20Z",
+                        "lastTransitionTime": "2024-01-19T19:01:41Z",
                         "message": "kubelet has sufficient memory available",
                         "reason": "KubeletHasSufficientMemory",
                         "status": "False",
                         "type": "MemoryPressure"
                     },
                     {
-                        "lastHeartbeatTime": "2024-01-14T16:53:56Z",
-                        "lastTransitionTime": "2024-01-14T16:02:34Z",
+                        "lastHeartbeatTime": "2024-01-26T19:24:20Z",
+                        "lastTransitionTime": "2024-01-19T19:01:41Z",
                         "message": "kubelet has no disk pressure",
                         "reason": "KubeletHasNoDiskPressure",
                         "status": "False",
                         "type": "DiskPressure"
                     },
                     {
-                        "lastHeartbeatTime": "2024-01-14T16:53:56Z",
-                        "lastTransitionTime": "2024-01-14T16:02:34Z",
+                        "lastHeartbeatTime": "2024-01-26T19:24:20Z",
+                        "lastTransitionTime": "2024-01-19T19:01:41Z",
                         "message": "kubelet has sufficient PID available",
                         "reason": "KubeletHasSufficientPID",
                         "status": "False",
                         "type": "PIDPressure"
                     },
                     {
-                        "lastHeartbeatTime": "2024-01-14T16:53:56Z",
-                        "lastTransitionTime": "2024-01-14T16:02:55Z",
-                        "message": "kubelet is posting ready status. AppArmor enabled",
+                        "lastHeartbeatTime": "2024-01-26T19:24:20Z",
+                        "lastTransitionTime": "2024-01-19T19:01:42Z",
+                        "message": "kubelet is posting ready status",
                         "reason": "KubeletReady",
                         "status": "True",
                         "type": "Ready"
@@ -128,124 +94,185 @@
                 "images": [
                     {
                         "names": [
-                            "docker.io/calico/cni@sha256:e282ea2914c806b5de2976330a17cfb5e6dcef47147bceb1432ca5c75fd46f50"
+                            "gidonan/k8s@sha256:ad7fc0424fa6b1fabac3d9ec7864743e945cd6aba1b7a2accfdd1c760ffad511",
+                            "gidonan/k8s:64"
                         ],
-                        "sizeBytes": 87458443
-                    },
-                        {
-                        "names": [
-                            "docker.io/calico/node@sha256:5972ad2bcbdc668564d3e26960c9c513b2d7b05581c704747cf7c62ef3a405a6"
-                        ],
-                        "sizeBytes": 81584866
+                        "sizeBytes": 531093830
                     },
                     {
                         "names": [
-                            "registry.k8s.io/kops/kops-controller@sha256:34d94f5d05898bb99e2ee954dbc90631001aa378927153beeffc59c05cf039a9"
+                            "mysql@sha256:4bc6bc963e6d8443453676cae56536f4b8156d78bae03c0145cbe47c2aad73bb",
+                            "mysql:5.7"
                         ],
-                        "sizeBytes": 44897564
+                        "sizeBytes": 501392011
                     },
                     {
                         "names": [
-                            "registry.k8s.io/kops/dns-controller@sha256:780300229d16a6927915fdb882fce06f26d05eeff9727920e6f2857c397ffc2f"
+                            "registry.k8s.io/hpa-example@sha256:581697a37f0e136db86d6b30392f0db40ce99c8248a7044c770012f4e8491544",
+                            "registry.k8s.io/hpa-example:latest"
                         ],
-                        "sizeBytes": 43768409
+                        "sizeBytes": 480802490
                     },
                     {
                         "names": [
-                            "registry.k8s.io/kube-apiserver@sha256:ccce3b0e4b288635f642c73a9a847ed67858e86c5afe37fc775887821aa3cd9e"
+                            "hubproxy.docker.internal:5555/docker/desktop-kubernetes@sha256:56c0d46255e05ebc9a5d62abe3ba49f4274222bff434690414a43e58866b882c",
+                            "hubproxy.docker.internal:5555/docker/desktop-kubernetes:kubernetes-v1.28.2-cni-v1.3.0-critools-v1.28.0-cri-dockerd-v0.3.4-1-debian"
                         ],
-                        "sizeBytes": 34439007
+                        "sizeBytes": 429540608
                     },
                     {
                         "names": [
-                            "registry.k8s.io/kube-controller-manager@sha256:90b34eb613181c6608e57b1d04daa6e555cac27adaa9f83988f474f53968ef83"
+                            "hubproxy.docker.internal:5555/docker/desktop-kubernetes@sha256:c74b34365ca6d8fed51c702bd90f101eee3db62693ce40659fee52c5bbe0a792",
+                            "hubproxy.docker.internal:5555/docker/desktop-kubernetes:kubernetes-v1.27.2-cni-v1.2.0-critools-v1.27.0-cri-dockerd-v0.3.2-1-debian"
                         ],
-                        "sizeBytes": 31457461
+                        "sizeBytes": 418385107
                     },
                     {
                         "names": [
-                            "docker.io/calico/kube-controllers@sha256:2b6acd7f677f76ffe12ecf3ea7df92eb9b1bdb07336d1ac2a54c7631fb753f7e"
+                            "crdschurch/crds-service-data-mapping@sha256:cda0ecf6a0acc295dea5123a6bba6692e8d7919b59f10f56dc96eb0a8bca7d12",
+                            "crdschurch/crds-service-data-mapping:master.5"
                         ],
-                        "sizeBytes": 31137169
+                        "sizeBytes": 337595297
                     },
                     {
                         "names": [
-                            "registry.k8s.io/provider-aws/aws-ebs-csi-driver@sha256:f0c5de192d832e7c1daa6580d4a62e8fa6fc8eabc0917ae4cb7ed4d15e95b59e"
+                            "registry.k8s.io/etcd:3.5.7-0"
                         ],
-                        "sizeBytes": 29725845
+                        "sizeBytes": 295724043
                     },
                     {
                         "names": [
-                            "registry.k8s.io/sig-storage/csi-provisioner@sha256:122bfb8c1edabb3c0edd63f06523e6940d958d19b3957dc7b1d6f81e9f1f6119"
+                            "registry.k8s.io/etcd@sha256:e013d0d5e4e25d00c61a7ff839927a1f36479678f11e49502b53a5e0b14f10c3",
+                            "registry.k8s.io/etcd:3.5.9-0"
                         ],
-                        "sizeBytes": 23345856
+                        "sizeBytes": 294018614
                     },
                     {
                         "names": [
-                            "registry.k8s.io/sig-storage/csi-resizer@sha256:9ebbf9f023e7b41ccee3d52afe39a89e3ddacdbb69269d583abfc25847cfd9e4"
+                            "nginx@sha256:4c0fdaa8b6341bfdeca5f18f7837462c80cff90527ee35ef185571e1c327beac",
+                            "nginx:latest"
                         ],
-                        "sizeBytes": 22381475
+                        "sizeBytes": 186728317
                     },
                     {
                         "names": [
-                            "registry.k8s.io/sig-storage/csi-attacher@sha256:8b9c313c05f54fb04f8d430896f5f5904b6cb157df261501b29adc04d2b2dc7b"
+                            "nginx@sha256:77ebc94e0cec30b20f9056bac1066b09fbdc049401b71850922c63fc0cc1762e",
+                            "nginx:1.17.4"
                         ],
-                        "sizeBytes": 22085298
+                        "sizeBytes": 125993293
                     },
                     {
                         "names": [
-                            "registry.k8s.io/kube-proxy@sha256:02f7a843133b3db26e601c97fcfcc232feef8e5197d154d41fbc1132cae58af9"
+                            "registry.k8s.io/kube-apiserver:v1.28.2"
                         ],
-                        "sizeBytes": 20279679
+                        "sizeBytes": 125724474
                     },
                     {
                         "names": [
-                            "registry.k8s.io/provider-aws/cloud-controller-manager@sha256:dcccdfba225e93ba2060a4c0b9072b50b0a564354c37bba6ed3ce89c326db58c"
+                            "registry.k8s.io/kube-controller-manager:v1.28.2"
                         ],
-                        "sizeBytes": 18280697
+                        "sizeBytes": 121747596
                     },
                     {
                         "names": [
-                            "registry.k8s.io/kube-scheduler@sha256:07dc4ab8b1b6effdf1d516ba79a05c002561e032e00fdeb7cabe21064abb1925"
+                            "registry.k8s.io/kube-apiserver:v1.27.2"
                         ],
-                        "sizeBytes": 15987866
+                        "sizeBytes": 120629050
                     },
                     {
                         "names": [
-                            "registry.k8s.io/sig-storage/csi-node-driver-registrar@sha256:0103eee7c35e3e0b5cd8cdca9850dc71c793cdeb6669d8be7a89440da2d06ae4"
+                            "registry.k8s.io/kube-controller-manager:v1.27.2"
                         ],
-                        "sizeBytes": 9133109
+                        "sizeBytes": 112482700
                     },
                     {
                         "names": [
-                            "registry.k8s.io/sig-storage/livenessprobe@sha256:406f59599991916d2942d8d02f076d957ed71b541ee19f09fc01723a6e6f5932"
+                            "nginx@sha256:b4b9b3eee194703fc2fa8afa5b7510c77ae70cfba567af1376a573a967c03dbb",
+                            "nginx:1.17.1"
                         ],
-                        "sizeBytes": 8240918
+                        "sizeBytes": 109357455
                     },
                     {
                         "names": [
-                            "registry.k8s.io/kops/kube-apiserver-healthcheck@sha256:db9f17c1c8b2dfc081e62138f8dcba0a882264f4a95da13e0226af53a45e50dc"
+                            "kodekloud/webapp-color@sha256:99c3821ea49b89c7a22d3eebab5c2e1ec651452e7675af243485034a72eb1423",
+                            "kodekloud/webapp-color:latest"
                         ],
-                        "sizeBytes": 5214894
+                        "sizeBytes": 84848908
                     },
                     {
                         "names": [
-                            "registry.k8s.io/pause@sha256:3d380ca8864549e74af4b29c10f9cb0956236dfb01c40ca076fb6c37253234db"
+                            "registry.k8s.io/kube-proxy:v1.28.2"
                         ],
-                        "sizeBytes": 301773
+                        "sizeBytes": 73096745
+                    },
+                    {
+                        "names": [
+                            "registry.k8s.io/kube-proxy:v1.27.2"
+                        ],
+                        "sizeBytes": 71117695
+                    },
+                    {
+                        "names": [
+                            "registry.k8s.io/metrics-server/metrics-server@sha256:ee4304963fb035239bb5c5e8c10f2f38ee80efc16ecbdb9feb7213c17ae2e86e",
+                            "registry.k8s.io/metrics-server/metrics-server:v0.6.4"
+                        ],
+                        "sizeBytes": 68910842
+                    },
+                    {
+                        "names": [
+                            "registry.k8s.io/kube-scheduler:v1.28.2"
+                        ],
+                        "sizeBytes": 60061836
+                    },
+                    {
+                        "names": [
+                            "registry.k8s.io/kube-scheduler:v1.27.2"
+                        ],
+                        "sizeBytes": 58378702
+                    },
+                    {
+                        "names": [
+                            "registry.k8s.io/coredns/coredns:v1.10.1"
+                        ],
+                        "sizeBytes": 53612153
+                    },
+                    {
+                        "names": [
+                            "docker/desktop-storage-provisioner:v2.0"
+                        ],
+                        "sizeBytes": 41850220
+                    },
+                    {
+                        "names": [
+                            "docker/desktop-vpnkit-controller:dc331cb22850be0cdd97c84a9cfecaf44a1afb6e"
+                        ],
+                        "sizeBytes": 36226360
+                    },
+                    {
+                        "names": [
+                            "busybox@sha256:3d3698b745b0c67ddf2c515650b42955b0bcd123c92060008aae4f4aac1c77b3",
+                            "busybox:latest"
+                        ],
+                        "sizeBytes": 4261566
+                    },
+                    {
+                        "names": [
+                            "registry.k8s.io/pause:3.9"
+                        ],
+                        "sizeBytes": 743952
                     }
                 ],
                 "nodeInfo": {
                     "architecture": "amd64",
-                    "bootID": "59df5c22-377a-4ce8-bd7d-03968e19bc66",
-                    "containerRuntimeVersion": "containerd://1.6.21",
-                    "kernelVersion": "5.15.0-1028-aws",
-                    "kubeProxyVersion": "v1.25.10",
-                    "kubeletVersion": "v1.25.10",
-                    "machineID": "61687e1fdf3d425aaebcf41cf5f9558a",
+                    "bootID": "4472475c-9bb1-4354-9f58-da53eb7b05b0",
+                    "containerRuntimeVersion": "docker://24.0.7",
+                    "kernelVersion": "5.15.133.1-microsoft-standard-WSL2",
+                    "kubeProxyVersion": "v1.28.2",
+                    "kubeletVersion": "v1.28.2",
+                    "machineID": "d689731c-ea3a-4625-9c7d-485742b2a110",
                     "operatingSystem": "linux",
-                    "osImage": "Ubuntu 22.04.1 LTS",
-                    "systemUUID": "ec272d42-2dfa-632e-2e0d-6d6181981d62"
+                    "osImage": "Docker Desktop",
+                    "systemUUID": "d689731c-ea3a-4625-9c7d-485742b2a110"
                 }
             }
         }
