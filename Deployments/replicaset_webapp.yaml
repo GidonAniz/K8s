@@ -7,7 +7,7 @@ items:
       deployment.kubernetes.io/desired-replicas: "5"
       deployment.kubernetes.io/max-replicas: "7"
       deployment.kubernetes.io/revision: "1"
-    creationTimestamp: "2024-01-26T21:32:02Z"
+    creationTimestamp: "2024-01-27T16:07:33Z"
     generation: 1
     labels:
       app: webapp
@@ -20,9 +20,9 @@ items:
       controller: true
       kind: Deployment
       name: webapp
-      uid: f6bf69fb-d157-4c19-8cfb-42383c85b9f8
-    resourceVersion: "539806"
-    uid: 021b28e3-dcd5-47f9-951a-ac4bfcddc4e7
+      uid: b4631926-3c88-405f-a35b-4ba393060ceb
+    resourceVersion: "5794"
+    uid: 265e869e-1dc0-4c97-bb83-69be35f6f591
   spec:
     replicas: 5
     selector:
