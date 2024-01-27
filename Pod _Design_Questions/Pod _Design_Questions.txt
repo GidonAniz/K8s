@@ -1,15 +1,25 @@
 Pod Design Questions: • Understand how to use Labels, Selectors and Annotations • Understand Deployments and how to perform rolling updates • Understand Deployments and how to perform rollbacks • Understand Jobs and CronJobs 
 
 1. Type the command for:  Get pods with label information 
+
+answer:
+
   kubectl get pods --show-labels
 
 2. Create 5 nginx pods in which two of them is labeled env=prod and three of them is labeled env=dev 
-  kubectl run nginx-prod-1 --image=nginx --labels=env=prod --restart=Never
-  kubectl run nginx-prod-2 --image=nginx --labels=env=prod --restart=Never
-  kubectl run nginx-dev-1 --image=nginx --labels=env=dev --restart=Never
-  kubectl run nginx-dev-2 --image=nginx --labels=env=dev --restart=Never
-  kubectl run nginx-dev-3 --image=nginx --labels=env=dev --restart=Never
 
+answer:
+
+PS D:\DeskTop\DEVOPS_COURSE>   kubectl run nginx-prod-1 --image=nginx --labels=env=prod --restart=Never
+pod/nginx-prod-1 created
+PS D:\DeskTop\DEVOPS_COURSE>   kubectl run nginx-prod-2 --image=nginx --labels=env=prod --restart=Never
+pod/nginx-prod-2 created
+PS D:\DeskTop\DEVOPS_COURSE>   kubectl run nginx-dev-1 --image=nginx --labels=env=dev --restart=Never
+pod/nginx-dev-1 created
+PS D:\DeskTop\DEVOPS_COURSE>   kubectl run nginx-dev-2 --image=nginx --labels=env=dev --restart=Never
+pod/nginx-dev-2 created
+PS D:\DeskTop\DEVOPS_COURSE>   kubectl run nginx-dev-3 --image=nginx --labels=env=dev --restart=Never
+pod/nginx-dev-3 created
 
 3. Verify all the pods are created with correct labels
 
@@ -211,7 +221,7 @@ spec:
     nodeName: nginxnode
 status: {}
 
-kubectl apply -f nginx-pod-node-selector.yaml
+PS D:\DeskTop\DEVOPS_COURSE> kubectl apply -f nginx-pod-node-selector.yaml
 
 
 17. Verify the pod that it is scheduled with the node selector on the right node... fix it if it’s not behind scheduled. 
