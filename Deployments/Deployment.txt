@@ -100,160 +100,39 @@ webapp-78d6769cf8-lzftj   0/1     Terminating   0          33s
   a. add the port section (80)  and create the deployment 
 
 answer:
-PS D:\DeskTop\DEVOPS_COURSE> kubectl create deploy webapp --image=nginx:1.17.1 --dry-run=client -o yaml > webapp.yaml
-PS D:\DeskTop\DEVOPS_COURSE> kubectl apply -f webapp.yaml
-deployment.apps/webapp created
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods
-NAME                      READY   STATUS    RESTARTS   AGE
-webapp-6b4847f985-rc27p   1/1     Running   0          16s
 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl describe pod webapp-6b4847f985-rc27p
-Name:             webapp-6b4847f985-rc27p
-Namespace:        default
-Priority:         0
-Service Account:  default
-Node:             docker-desktop/192.168.65.4
-Start Time:       Fri, 19 Jan 2024 19:36:46 +0200
-Labels:           app=webapp
-                  pod-template-hash=6b4847f985
-Annotations:      <none>
-Status:           Running
-IP:               10.1.0.67
-IPs:
-  IP:           10.1.0.67
-Controlled By:  ReplicaSet/webapp-6b4847f985
-Containers:
-  nginx-container:
-    Container ID:   docker://bb3473ba2be41c1258df95af3ed3be95cfa9ab69a015f8db657955b8c703d237
-    Image:          nginx:1.17.1
-    Image ID:       docker-pullable://nginx@sha256:b4b9b3eee194703fc2fa8afa5b7510c77ae70cfba567af1376a573a967c03dbb
-    Port:           80/TCP
-    Host Port:      0/TCP
-    State:          Running
-      Started:      Fri, 19 Jan 2024 19:37:02 +0200
-    Ready:          True
-    Restart Count:  0
-    Environment:    <none>
-    Mounts:
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-p7bjj (ro)
-Conditions:
-  Type              Status
-  Initialized       True
-  Ready             True
-  ContainersReady   True
-  PodScheduled      True
-Volumes:
-  kube-api-access-p7bjj:
-    Type:                    Projected (a volume that contains injected data from multiple sources)
-    TokenExpirationSeconds:  3607
-    ConfigMapName:           kube-root-ca.crt
-    ConfigMapOptional:       <nil>
-    DownwardAPI:             true
-QoS Class:                   BestEffort
-Node-Selectors:              <none>
-Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
-                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
-Events:
-  Type    Reason     Age   From               Message
-  ----    ------     ----  ----               -------
-  Normal  Scheduled  39s   default-scheduler  Successfully assigned default/webapp-6b4847f985-rc27p to docker-desktop
-  Normal  Pulling    39s   kubelet            Pulling image "nginx:1.17.1"
-  Normal  Pulled     24s   kubelet            Successfully pulled image "nginx:1.17.1" in 14.953948781s (14.953969361s including waiting)
-  Normal  Created    24s   kubelet            Created container nginx-container
-  Normal  Started    24s   kubelet            Started container nginx-container
+PS D:\DeskTop\DEVOPS_COURS> kubectl create deploy webapp --image=nginx:1.17.1 --dry-run=client -o yaml > webapp.yaml
+PS D:\DeskTop\DEVOPS_COURS> kubectl apply -f webapp.yaml
+deployment.apps/webapp created
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pod -l app=webapp -o=jsonpath='{.items[0].spec.containers[0].image}'
+nginx:1.17.1
 
 
 7. Update the deployment with the image version 1.17.4 and verify 
 
 answer:
-PS D:\DeskTop\DEVOPS_COURSE> kubectl set image deployment webapp nginx-container=nginx:1.17.4
+S D:\DeskTop\DEVOPS_COURS> kubectl set image deployment/webapp nginx=nginx:1.17.4
 deployment.apps/webapp image updated
-
-PS D:\DeskTop\DEVOPS_COURSE> kubectl describe pod webapp-7bddcc476d-5zngt
-Name:             webapp-7bddcc476d-5zngt
-Namespace:        default
-Priority:         0
-Service Account:  default
-Node:             docker-desktop/192.168.65.4
-Start Time:       Fri, 19 Jan 2024 19:45:44 +0200
-Labels:           app=webapp
-                  pod-template-hash=7bddcc476d
-Annotations:      <none>
-Status:           Running
-IP:               10.1.0.68
-IPs:
-  IP:           10.1.0.68
-Controlled By:  ReplicaSet/webapp-7bddcc476d
-Containers:
-  nginx-container:
-    Container ID:   docker://3f198faaf914823decc56470ee572149b5031deecc0cdbf30131d0b923062c31
-    Image:          nginx:1.17.4
-    Image ID:       docker-pullable://nginx@sha256:77ebc94e0cec30b20f9056bac1066b09fbdc049401b71850922c63fc0cc1762e
-    Port:           80/TCP
-    Host Port:      0/TCP
-    State:          Running
-      Started:      Fri, 19 Jan 2024 19:46:02 +0200
-    Ready:          True
-    Restart Count:  0
-    Environment:    <none>
-    Mounts:
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-dzvbs (ro)
-Conditions:
-  Type              Status
-  Initialized       True
-  Ready             True
-  ContainersReady   True
-  PodScheduled      True
-Volumes:
-  kube-api-access-dzvbs:
-    Type:                    Projected (a volume that contains injected data from multiple sources)
-    TokenExpirationSeconds:  3607
-    ConfigMapName:           kube-root-ca.crt
-    ConfigMapOptional:       <nil>
-    DownwardAPI:             true
-QoS Class:                   BestEffort
-Node-Selectors:              <none>
-Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
-                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
-Events:
-  Type    Reason     Age   From               Message
-  ----    ------     ----  ----               -------
-  Normal  Scheduled  74s   default-scheduler  Successfully assigned default/webapp-7bddcc476d-5zngt to docker-desktop
-  Normal  Pulling    74s   kubelet            Pulling image "nginx:1.17.4"
-  Normal  Pulled     57s   kubelet            Successfully pulled image "nginx:1.17.4" in 17.284740679s (17.284750179s including waiting)
-  Normal  Created    57s   kubelet            Created container nginx-container
-  Normal  Started    57s   kubelet            Started container nginx-container
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pod -l app=webapp -o=jsonpath='{.items[0].spec.containers[0].image}'
+nginx:1.17.4
 
 8. Check the rollout history and make sure everything is ok after the update
 
 answer:
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp
-deployment.apps/webapp
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment/webapp
+deployment.apps/webapp 
 REVISION  CHANGE-CAUSE
 1         <none>
 2         <none>
 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp --revision=2
-deployment.apps/webapp with revision #2
-Pod Template:
-  Labels:       app=webapp
-        pod-template-hash=7bddcc476d
-  Containers:
-   nginx-container:
-    Image:      nginx:1.17.4
-    Port:       80/TCP
-    Host Port:  0/TCP
-    Environment:        <none>
-    Mounts:     <none>
-  Volumes:      <none>
-
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp --revision=1
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp --revision=1
 deployment.apps/webapp with revision #1
 Pod Template:
   Labels:       app=webapp
-        pod-template-hash=6b4847f985
+        pod-template-hash=5768b68bf
   Containers:
-   nginx-container:
+   nginx:
     Image:      nginx:1.17.1
     Port:       80/TCP
     Host Port:  0/TCP
@@ -261,69 +140,35 @@ Pod Template:
     Mounts:     <none>
   Volumes:      <none>
 
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp --revision=2
+deployment.apps/webapp with revision #2
+Pod Template:
+  Labels:       app=webapp
+        pod-template-hash=7f88774d9b
+  Containers:
+   nginx:
+    Image:      nginx:1.17.4
+    Port:       80/TCP
+    Host Port:  0/TCP
+    Environment:        <none>
+    Mounts:     <none>
+  Volumes:      <none>
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -l app=webapp
+NAME                      READY   STATUS    RESTARTS   AGE
+webapp-7f88774d9b-v7kh6   1/1     Running   0          3m46s
+
+
 9. Undo the deployment to the previous version 1.17.1 and verify Image has the previous version
 
 answer:
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout undo deployment webapp
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout undo deployment/webapp
 deployment.apps/webapp rolled back
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout status deployment webapp
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout status deployment/webapp
 deployment "webapp" successfully rolled out
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods
-NAME                      READY   STATUS    RESTARTS   AGE
-webapp-6b4847f985-drbkl   1/1     Running   0          39s
-PS D:\DeskTop\DEVOPS_COURSE> kubectl describe pod webapp-6b4847f985-drbkl
-Name:             webapp-6b4847f985-drbkl
-Namespace:        default
-Priority:         0
-Service Account:  default
-Node:             docker-desktop/192.168.65.4
-Start Time:       Fri, 19 Jan 2024 19:51:01 +0200
-Labels:           app=webapp
-                  pod-template-hash=6b4847f985
-Annotations:      <none>
-Status:           Running
-IP:               10.1.0.69
-IPs:
-  IP:           10.1.0.69
-Controlled By:  ReplicaSet/webapp-6b4847f985
-Containers:
-  nginx-container:
-    Container ID:   docker://c14fa9074db1088f98652158fea595a1813bd52213e0b606dd09698e138f64c2
-    Image:          nginx:1.17.1
-    Image ID:       docker-pullable://nginx@sha256:b4b9b3eee194703fc2fa8afa5b7510c77ae70cfba567af1376a573a967c03dbb
-    Port:           80/TCP
-    Host Port:      0/TCP
-    State:          Running
-      Started:      Fri, 19 Jan 2024 19:51:02 +0200
-    Ready:          True
-    Restart Count:  0
-    Environment:    <none>
-    Mounts:
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-7nnjr (ro)
-Conditions:
-  Type              Status
-  Initialized       True
-  Ready             True
-  ContainersReady   True
-  PodScheduled      True
-Volumes:
-  kube-api-access-7nnjr:
-    Type:                    Projected (a volume that contains injected data from multiple sources)
-    TokenExpirationSeconds:  3607
-    ConfigMapName:           kube-root-ca.crt
-    ConfigMapOptional:       <nil>
-    DownwardAPI:             true
-QoS Class:                   BestEffort
-Node-Selectors:              <none>
-Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
-                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
-Events:
-  Type    Reason     Age   From               Message
-  ----    ------     ----  ----               -------
-  Normal  Scheduled  47s   default-scheduler  Successfully assigned default/webapp-6b4847f985-drbkl to docker-desktop
-  Normal  Pulled     47s   kubelet            Container image "nginx:1.17.1" already present on machine
-  Normal  Created    47s   kubelet            Created container nginx-container
-  Normal  Started    47s   kubelet            Started container nginx-container
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pod -l app=webapp -o=jsonpath='{.items[0].spec.containers[0].image}'
+nginx:1.17.1
 
 10. Update the deployment with the wrong image version 1.100 and verify something is wrong with the deployment  . Expect: kubectl get pods (ImagePullErr) 
   a.  Undo the deployment with the previous version and verify everything is Ok 
@@ -332,19 +177,19 @@ Events:
   d. update the deployment with the image version latest and check the history and verify nothing is going on
 
 answer:
-PS D:\DeskTop\DEVOPS_COURSE> kubectl set image deployment webapp nginx-container=nginx:1.100
+PS D:\DeskTop\DEVOPS_COURS> kubectl set image deployment/webapp nginx=nginx:1.100
 deployment.apps/webapp image updated
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pods
 NAME                      READY   STATUS         RESTARTS   AGE
-webapp-5c6b5f4d67-fpmht   0/1     ErrImagePull   0          13s
-webapp-6b4847f985-drbkl   1/1     Running        0          3m26s
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout undo deployment webapp
+webapp-5768b68bf-xx7f8    1/1     Running        0          88s
+webapp-86c5d47987-ktwvj   0/1     ErrImagePull   0          7s
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout undo deployment/webapp
 deployment.apps/webapp rolled back
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout status deployment webapp
-deployment "webapp" successfully rolled out
-PS D:\DeskTop\DEVOPS_COURSE\spring-petclinic-for-jb-project> kubectl get pods
-NAME                      READY   STATUS    RESTARTS   AGE
-webapp-6b4847f985-drbkl   1/1     Running   0          4m3s
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pods
+NAME                     READY   STATUS    RESTARTS   AGE
+webapp-5768b68bf-xx7f8   1/1     Running   0          105s
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deploy webapp --revision=7
+error: unable to find the specified revision
 PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp
 deployment.apps/webapp
 REVISION  CHANGE-CAUSE
@@ -354,13 +199,20 @@ REVISION  CHANGE-CAUSE
 
 PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp --revision=7
 error: unable to find the specified revision
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp --revision=5
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp
+deployment.apps/webapp 
+REVISION  CHANGE-CAUSE
+2         <none>
+4         <none>
+5         <none>
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp --revision=5
 deployment.apps/webapp with revision #5
 Pod Template:
   Labels:       app=webapp
-        pod-template-hash=6b4847f985
+        pod-template-hash=5768b68bf
   Containers:
-   nginx-container:
+   nginx:
     Image:      nginx:1.17.1
     Port:       80/TCP
     Host Port:  0/TCP
@@ -368,68 +220,43 @@ Pod Template:
     Mounts:     <none>
   Volumes:      <none>
 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl set image deployment webapp nginx-container=nginx:latest
-deployment.apps/webapp image updated
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp
-deployment.apps/webapp
-REVISION  CHANGE-CAUSE
-2         <none>
-4         <none>
-5         <none>
-6         <none>
-
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp --revision=6
-deployment.apps/webapp with revision #6
-Pod Template:
-  Labels:       app=webapp
-        pod-template-hash=7bbf655778
-  Containers:
-   nginx-container:
-    Image:      nginx:latest
-    Port:       80/TCP
-    Host Port:  0/TCP
-    Environment:        <none>
-    Mounts:     <none>
-  Volumes:      <none>
-
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods
-NAME                      READY   STATUS    RESTARTS   AGE
-webapp-7bbf655778-rngcl   1/1     Running   0          52s
-
-
 11. Apply the autoscaling to this deployment with minimum 10 and maximum 20 replicas and target CPU of 85% and verify hpa is created and replicas are increased to 10 from 1 
 
 answer:
-PS D:\DeskTop\DEVOPS_COURSE> kubectl autoscale deployment webapp --cpu-percent=85 --min=10 --max=20
+kubectl autoscale deployment webapp --cpu-percent=85 --min=10 --max=20
 horizontalpodautoscaler.autoscaling/webapp autoscaled
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get hpa
+PS D:\DeskTop\DEVOPS_COURS> kubectl get hpa
 NAME     REFERENCE           TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
-webapp   Deployment/webapp   <unknown>/85%   10        20        1          42s
+webapp   Deployment/webapp   <unknown>/85%   10        20        0          12s
 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get deployment -w
+PS D:\DeskTop\DEVOPS_COURS> kubectl get deployment -w
 NAME     READY   UP-TO-DATE   AVAILABLE   AGE
-webapp   10/10   10           10          94m
+webapp   10/10   10           10          16m
 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods
-NAME                      READY   STATUS    RESTARTS   AGE
-webapp-5d4644fc48-4vvx5   1/1     Running   0          3m54s
-webapp-5d4644fc48-9588t   1/1     Running   0          3m54s
-webapp-5d4644fc48-9m46q   1/1     Running   0          94m
-webapp-5d4644fc48-9slvj   1/1     Running   0          3m54s
-webapp-5d4644fc48-bfhrz   1/1     Running   0          3m54s
-webapp-5d4644fc48-kgsdt   1/1     Running   0          3m54s
-webapp-5d4644fc48-kqddm   1/1     Running   0          3m54s
-webapp-5d4644fc48-l9rr7   1/1     Running   0          3m54s
-webapp-5d4644fc48-mr2kt   1/1     Running   0          3m54s
-webapp-5d4644fc48-xx25g   1/1     Running   0          3m54s
+
+PS D:\DeskTop\DEVOPS_COURS>  kubectl get pods
+NAME                     READY   STATUS    RESTARTS   AGE
+webapp-5768b68bf-bw8ng   1/1     Running   0          2m14s
+webapp-5768b68bf-g8rdx   1/1     Running   0          2m14s
+webapp-5768b68bf-h6t99   1/1     Running   0          2m14s
+webapp-5768b68bf-hn8t4   1/1     Running   0          2m14s
+webapp-5768b68bf-ktnsm   1/1     Running   0          2m14s
+webapp-5768b68bf-lf6vv   1/1     Running   0          2m14s
+webapp-5768b68bf-lr7tn   1/1     Running   0          2m14s
+webapp-5768b68bf-p6vh8   1/1     Running   0          2m14s
+webapp-5768b68bf-w92k7   1/1     Running   0          2m14s
+webapp-5768b68bf-xx7f8   1/1     Running   0          7m31s
+
+
 12.
 
 13. Clean the cluster by deleting deployment and hpa you just created 
 
 answer:
-PS D:\DeskTop\DEVOPS_COURSE> kubectl delete hpa webapp
+
+PS D:\DeskTop\DEVOPS_COURS>  kubectl delete hpa webapp
 horizontalpodautoscaler.autoscaling "webapp" deleted
-PS D:\DeskTop\DEVOPS_COURSE> kubectl delete deployment webapp
+PS D:\DeskTop\DEVOPS_COURS> kubectl delete deployment webapp
 deployment.apps "webapp" deleted
 
 14. Create a job and make it run 10 times one after one (run > exit > run >exit ..) using the following configuration: kubectl create job hello-job --image=busybox --dry-run -o yaml -- echo "Hello I am from job" > hello-job.yaml”
