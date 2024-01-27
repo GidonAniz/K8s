@@ -5,6 +5,37 @@ a. Use the below command to create a yaml file.
    i.   kubectl create deploy webapp --image=nginx --dry-run -o yaml > webapp.yaml
    ii.  Edit it and add 5 replica’s
 
+answer:
+PS D:\DeskTop\DEVOPS_COURSE> kubectl create deploy webapp --image=nginx --dry-run=client -o yaml > webapp.yaml
+
+change the yaml to :
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: webapp
+  name: webapp
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: webapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}
+
+
 2. Get the deployment rollout status
 
 answer: 
