@@ -11,48 +11,167 @@ Pod Design Questions: • Understand how to use Labels, Selectors and Annotation
   kubectl run nginx-dev-3 --image=nginx --labels=env=dev --restart=Never
 
 
-3. Verify all the pods are created with correct labels 
-  kubectl describe pods
+3. Verify all the pods are created with correct labels
+
+answer: 
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pods   --show-labels  
+NAME           READY   STATUS    RESTARTS   AGE     LABELS
+nginx-dev-1    1/1     Running   0          3m33s   env=dev
+nginx-dev-2    1/1     Running   0          3m33s   env=dev
+nginx-dev-3    1/1     Running   0          3m25s   env=dev
+nginx-prod-1   1/1     Running   0          3m33s   env=prod
+nginx-prod-2   1/1     Running   0          3m33s   env=prod
 
 4. Get the pods with label env=dev 
-  kubectl get pods -l env=dev
+
+answer: 
+
+  PS D:\DeskTop\DEVOPS_COURS>   kubectl get pods -l env=dev
+NAME          READY   STATUS    RESTARTS   AGE
+nginx-dev-1   1/1     Running   0          97s
+nginx-dev-2   1/1     Running   0          97s
+nginx-dev-3   1/1     Running   0          89s
 
 5. Get the pods with label env=dev and also output the labels 
-  kubectl get pods -l env=dev --show-labels
+
+answer: 
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -l env=dev --show-labels
+NAME          READY   STATUS    RESTARTS   AGE    LABELS
+nginx-dev-1   1/1     Running   0          2m1s   env=dev
+nginx-dev-2   1/1     Running   0          2m1s   env=dev
+nginx-dev-3   1/1     Running   0          113s   env=dev
 
 6. Get the pods with label env=prod 
-  kubectl get pods -l env=prod
+
+answer:
+
+ PS D:\DeskTop\DEVOPS_COURS>  kubectl get pods -l env=prod
+NAME           READY   STATUS    RESTARTS   AGE
+nginx-prod-1   1/1     Running   0          2m51s
+nginx-prod-2   1/1     Running   0          2m51s
 
 7. Get the pods with label env=prod and also output the labels 
-  kubectl get pods -l env=prod --show-labels
+
+answer: 
+
+ PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -l env=prod --show-labels
+NAME           READY   STATUS    RESTARTS   AGE     LABELS
+nginx-prod-1   1/1     Running   0          4m54s   env=prod
+nginx-prod-2   1/1     Running   0          4m54s   env=prod
+
 
 8. Get the pods with label env 
-  kubectl get pods --selector=env
+
+answer: 
+
+  PS D:\DeskTop\DEVOPS_COURS> kubectl get pods --selector=env
+NAME           READY   STATUS    RESTARTS   AGE
+nginx-dev-1    1/1     Running   0          5m33s
+nginx-dev-2    1/1     Running   0          5m33s
+nginx-dev-3    1/1     Running   0          5m25s
+nginx-prod-1   1/1     Running   0          5m33s
+nginx-prod-2   1/1     Running   0          5m33s
+
 
 9. Get the pods with labels env=dev and env=prod 
-  kubectl get pods -l 'env in (dev, prod)'
+
+answer:
+
+ PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -l 'env in (dev, prod)'
+NAME           READY   STATUS    RESTARTS   AGE
+nginx-dev-1    1/1     Running   0          6m8s
+nginx-dev-2    1/1     Running   0          6m8s
+nginx-dev-3    1/1     Running   0          6m
+nginx-prod-1   1/1     Running   0          6m8s
+nginx-prod-2   1/1     Running   0          6m8s
+
 
 10. Get the pods with labels env=dev and env=prod and output the labels as well 
-  kubectl get pods -l 'env in (dev,prod)' --show-labels
+
+answer:
+
+PS D:\DeskTop\DEVOPS_COURS>   kubectl get pods -l 'env in (dev,prod)' --show-labels
+NAME           READY   STATUS    RESTARTS   AGE     LABELS
+nginx-dev-1    1/1     Running   0          6m39s   env=dev
+nginx-dev-2    1/1     Running   0          6m39s   env=dev
+nginx-dev-3    1/1     Running   0          6m31s   env=dev
+nginx-prod-1   1/1     Running   0          6m39s   env=prod
+nginx-prod-2   1/1     Running   0          6m39s   env=prod
+
 
 11. Change the label for one of the pod to env=uat and list all the pods to verify 
-  kubectl label pod nginx-dev-1 env=uat --overwrite
-  kubectl get pods --show-labels
+
+answer:
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl label pod nginx-dev-1 env=uat --overwrite
+pod/nginx-dev-1 labeled
+
+PS D:\DeskTop\DEVOPS_COURS>   kubectl get pods --show-labels
+NAME           READY   STATUS    RESTARTS   AGE     LABELS
+nginx-dev-1    1/1     Running   0          7m42s   env=uat
+nginx-dev-2    1/1     Running   0          7m42s   env=dev
+nginx-dev-3    1/1     Running   0          7m34s   env=dev
+nginx-prod-1   1/1     Running   0          7m42s   env=prod
+nginx-prod-2   1/1     Running   0          7m42s   env=prod
 
 12. Remove the labels for the pods that we created now and verify all the labels are removed 
-    kubectl label pods -l 'env in (dev, prod, uat)' env-
-    kubectl get pods --show-labels
+   
+anser:
 
+PS D:\DeskTop\DEVOPS_COURS>  kubectl label pods -l 'env in (dev, prod, uat)' env-
+pod/nginx-dev-1 unlabeled
+pod/nginx-dev-2 unlabeled
+pod/nginx-dev-3 unlabeled
+pod/nginx-prod-1 unlabeled
+pod/nginx-prod-2 unlabeled
+
+PS D:\DeskTop\DEVOPS_COURS>   kubectl get pods --show-labels
+NAME           READY   STATUS    RESTARTS   AGE     LABELS
+nginx-dev-1    1/1     Running   0          8m40s   <none>
+nginx-dev-2    1/1     Running   0          8m40s   <none>
+nginx-dev-3    1/1     Running   0          8m32s   <none>
+nginx-prod-1   1/1     Running   0          8m40s   <none>
+nginx-prod-2   1/1     Running   0          8m40s   <none>
 
 13. Let’s add the label app=nginx for all the pods and verify (using kubectl) 
-    kubectl label pods --all app=nginx
-    kubectl get pods --show-labels
+
+ answer:
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl label pods --all app=nginx
+pod/nginx-dev-1 labeled
+pod/nginx-dev-2 labeled
+pod/nginx-dev-3 labeled
+pod/nginx-prod-1 labeled
+pod/nginx-prod-2 labeled
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pods --show-labels
+NAME           READY   STATUS    RESTARTS   AGE     LABELS
+nginx-dev-1    1/1     Running   0          9m17s   app=nginx
+nginx-dev-2    1/1     Running   0          9m17s   app=nginx
+nginx-dev-3    1/1     Running   0          9m9s    app=nginx
+nginx-prod-1   1/1     Running   0          9m17s   app=nginx
+nginx-prod-2   1/1     Running   0          9m17s   app=nginx
 
 14. Get all the nodes with labels (if using minikube you would get only master node) 
-    kubectl get nodes --show-labels
+
+answer:
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl get nodes --show-labels
+NAME             STATUS   ROLES           AGE   VERSION   LABELS
+docker-desktop   Ready    control-plane   11m   v1.28.2   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=docker-desktop,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=
+
 
 15. Label the worker node nodeName=nginxnode 
-    kubectl label node <worker-node-name> nodeName=nginxnode
+
+answer:
+
+PS D:\DeskTop\DEVOPS_COURS>  kubectl label node docker-desktop  nodeName=nginxnode   
+node/docker-desktop labeled
+PS D:\DeskTop\DEVOPS_COURS>  kubectl get nodes --show-labels
+NAME             STATUS   ROLES           AGE   VERSION   LABELS
+docker-desktop   Ready    control-plane   13m   v1.28.2   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=docker-desktop,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=,nodeName=nginxnode
 
 16. Create a Pod that will be deployed on the worker node with the label nodeName=nginxnode  
   Add the nodeSelector to the below and create the pod:
@@ -96,9 +215,18 @@ kubectl apply -f nginx-pod-node-selector.yaml
 
 
 17. Verify the pod that it is scheduled with the node selector on the right node... fix it if it’s not behind scheduled. 
-  kubectl get pod nginx -o wide
-  kubectl delete pod nginx
-  kubectl apply -f nginx-pod-node-selector.yaml
+
+answer: 
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pod nginx -o wide
+NAME    READY   STATUS    RESTARTS   AGE   IP           NODE             NOMINATED NODE   READINESS GATES
+nginx   1/1     Running   0          53s   10.1.0.191   docker-desktop   <none>           <none>
+
 
 18. Verify the pod nginx that we just created has this label 
-  kubectl get pod nginx --show-labels
+
+answer: 
+
+PS D:\DeskTop\DEVOPS_COURS>  kubectl get pods --show-labels              
+NAME           READY   STATUS    RESTARTS   AGE     LABELS
+nginx          1/1     Running   0          2m11s   run=nginx
