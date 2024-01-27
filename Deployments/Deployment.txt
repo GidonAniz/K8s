@@ -188,14 +188,7 @@ deployment.apps/webapp rolled back
 PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods
 NAME                     READY   STATUS    RESTARTS   AGE
 webapp-5768b68bf-xx7f8   1/1     Running   0          105s
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deploy webapp --revision=7
-error: unable to find the specified revision
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp
-deployment.apps/webapp
-REVISION  CHANGE-CAUSE
-2         <none>
-4         <none>
-5         <none>
+
 
 PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp --revision=7
 error: unable to find the specified revision
