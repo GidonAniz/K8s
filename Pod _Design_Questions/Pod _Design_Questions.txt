@@ -15,7 +15,7 @@ Pod Design Questions: • Understand how to use Labels, Selectors and Annotation
 
 answer: 
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl get pods   --show-labels  
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods   --show-labels  
 NAME           READY   STATUS    RESTARTS   AGE     LABELS
 nginx-dev-1    1/1     Running   0          3m33s   env=dev
 nginx-dev-2    1/1     Running   0          3m33s   env=dev
@@ -27,7 +27,7 @@ nginx-prod-2   1/1     Running   0          3m33s   env=prod
 
 answer: 
 
-  PS D:\DeskTop\DEVOPS_COURS>   kubectl get pods -l env=dev
+  PS D:\DeskTop\DEVOPS_COURSE>   kubectl get pods -l env=dev
 NAME          READY   STATUS    RESTARTS   AGE
 nginx-dev-1   1/1     Running   0          97s
 nginx-dev-2   1/1     Running   0          97s
@@ -37,7 +37,7 @@ nginx-dev-3   1/1     Running   0          89s
 
 answer: 
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -l env=dev --show-labels
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods -l env=dev --show-labels
 NAME          READY   STATUS    RESTARTS   AGE    LABELS
 nginx-dev-1   1/1     Running   0          2m1s   env=dev
 nginx-dev-2   1/1     Running   0          2m1s   env=dev
@@ -47,7 +47,7 @@ nginx-dev-3   1/1     Running   0          113s   env=dev
 
 answer:
 
- PS D:\DeskTop\DEVOPS_COURS>  kubectl get pods -l env=prod
+ PS D:\DeskTop\DEVOPS_COURSE>  kubectl get pods -l env=prod
 NAME           READY   STATUS    RESTARTS   AGE
 nginx-prod-1   1/1     Running   0          2m51s
 nginx-prod-2   1/1     Running   0          2m51s
@@ -56,7 +56,7 @@ nginx-prod-2   1/1     Running   0          2m51s
 
 answer: 
 
- PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -l env=prod --show-labels
+ PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods -l env=prod --show-labels
 NAME           READY   STATUS    RESTARTS   AGE     LABELS
 nginx-prod-1   1/1     Running   0          4m54s   env=prod
 nginx-prod-2   1/1     Running   0          4m54s   env=prod
@@ -66,7 +66,7 @@ nginx-prod-2   1/1     Running   0          4m54s   env=prod
 
 answer: 
 
-  PS D:\DeskTop\DEVOPS_COURS> kubectl get pods --selector=env
+  PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods --selector=env
 NAME           READY   STATUS    RESTARTS   AGE
 nginx-dev-1    1/1     Running   0          5m33s
 nginx-dev-2    1/1     Running   0          5m33s
@@ -79,7 +79,7 @@ nginx-prod-2   1/1     Running   0          5m33s
 
 answer:
 
- PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -l 'env in (dev, prod)'
+ PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods -l 'env in (dev, prod)'
 NAME           READY   STATUS    RESTARTS   AGE
 nginx-dev-1    1/1     Running   0          6m8s
 nginx-dev-2    1/1     Running   0          6m8s
@@ -92,7 +92,7 @@ nginx-prod-2   1/1     Running   0          6m8s
 
 answer:
 
-PS D:\DeskTop\DEVOPS_COURS>   kubectl get pods -l 'env in (dev,prod)' --show-labels
+PS D:\DeskTop\DEVOPS_COURSE>   kubectl get pods -l 'env in (dev,prod)' --show-labels
 NAME           READY   STATUS    RESTARTS   AGE     LABELS
 nginx-dev-1    1/1     Running   0          6m39s   env=dev
 nginx-dev-2    1/1     Running   0          6m39s   env=dev
@@ -105,10 +105,10 @@ nginx-prod-2   1/1     Running   0          6m39s   env=prod
 
 answer:
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl label pod nginx-dev-1 env=uat --overwrite
+PS D:\DeskTop\DEVOPS_COURSE> kubectl label pod nginx-dev-1 env=uat --overwrite
 pod/nginx-dev-1 labeled
 
-PS D:\DeskTop\DEVOPS_COURS>   kubectl get pods --show-labels
+PS D:\DeskTop\DEVOPS_COURSE>   kubectl get pods --show-labels
 NAME           READY   STATUS    RESTARTS   AGE     LABELS
 nginx-dev-1    1/1     Running   0          7m42s   env=uat
 nginx-dev-2    1/1     Running   0          7m42s   env=dev
@@ -120,14 +120,14 @@ nginx-prod-2   1/1     Running   0          7m42s   env=prod
    
 anser:
 
-PS D:\DeskTop\DEVOPS_COURS>  kubectl label pods -l 'env in (dev, prod, uat)' env-
+PS D:\DeskTop\DEVOPS_COURSE>  kubectl label pods -l 'env in (dev, prod, uat)' env-
 pod/nginx-dev-1 unlabeled
 pod/nginx-dev-2 unlabeled
 pod/nginx-dev-3 unlabeled
 pod/nginx-prod-1 unlabeled
 pod/nginx-prod-2 unlabeled
 
-PS D:\DeskTop\DEVOPS_COURS>   kubectl get pods --show-labels
+PS D:\DeskTop\DEVOPS_COURSE>   kubectl get pods --show-labels
 NAME           READY   STATUS    RESTARTS   AGE     LABELS
 nginx-dev-1    1/1     Running   0          8m40s   <none>
 nginx-dev-2    1/1     Running   0          8m40s   <none>
@@ -139,14 +139,14 @@ nginx-prod-2   1/1     Running   0          8m40s   <none>
 
  answer:
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl label pods --all app=nginx
+PS D:\DeskTop\DEVOPS_COURSE> kubectl label pods --all app=nginx
 pod/nginx-dev-1 labeled
 pod/nginx-dev-2 labeled
 pod/nginx-dev-3 labeled
 pod/nginx-prod-1 labeled
 pod/nginx-prod-2 labeled
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl get pods --show-labels
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods --show-labels
 NAME           READY   STATUS    RESTARTS   AGE     LABELS
 nginx-dev-1    1/1     Running   0          9m17s   app=nginx
 nginx-dev-2    1/1     Running   0          9m17s   app=nginx
@@ -158,7 +158,7 @@ nginx-prod-2   1/1     Running   0          9m17s   app=nginx
 
 answer:
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl get nodes --show-labels
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get nodes --show-labels
 NAME             STATUS   ROLES           AGE   VERSION   LABELS
 docker-desktop   Ready    control-plane   11m   v1.28.2   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=docker-desktop,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=
 
@@ -167,9 +167,9 @@ docker-desktop   Ready    control-plane   11m   v1.28.2   beta.kubernetes.io/arc
 
 answer:
 
-PS D:\DeskTop\DEVOPS_COURS>  kubectl label node docker-desktop  nodeName=nginxnode   
+PS D:\DeskTop\DEVOPS_COURSE>  kubectl label node docker-desktop  nodeName=nginxnode   
 node/docker-desktop labeled
-PS D:\DeskTop\DEVOPS_COURS>  kubectl get nodes --show-labels
+PS D:\DeskTop\DEVOPS_COURSE>  kubectl get nodes --show-labels
 NAME             STATUS   ROLES           AGE   VERSION   LABELS
 docker-desktop   Ready    control-plane   13m   v1.28.2   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=docker-desktop,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=,nodeName=nginxnode
 
@@ -218,7 +218,7 @@ kubectl apply -f nginx-pod-node-selector.yaml
 
 answer: 
 
-PS D:\DeskTop\DEVOPS_COURS> kubectl get pod nginx -o wide
+PS D:\DeskTop\DEVOPS_COURSE> kubectl get pod nginx -o wide
 NAME    READY   STATUS    RESTARTS   AGE   IP           NODE             NOMINATED NODE   READINESS GATES
 nginx   1/1     Running   0          53s   10.1.0.191   docker-desktop   <none>           <none>
 
@@ -227,6 +227,6 @@ nginx   1/1     Running   0          53s   10.1.0.191   docker-desktop   <none> 
 
 answer: 
 
-PS D:\DeskTop\DEVOPS_COURS>  kubectl get pods --show-labels              
+PS D:\DeskTop\DEVOPS_COURSE>  kubectl get pods --show-labels              
 NAME           READY   STATUS    RESTARTS   AGE     LABELS
 nginx          1/1     Running   0          2m11s   run=nginx
