@@ -40,23 +40,27 @@ status: {}
 
 answer: 
 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods 
-NAME                      READY   STATUS    RESTARTS   AGE
-webapp-78d6769cf8-d7c96   1/1     Running   0          84s
-webapp-78d6769cf8-l4mt2   1/1     Running   0          84s
-webapp-78d6769cf8-pt7m2   1/1     Running   0          84s
-webapp-78d6769cf8-w7sjv   1/1     Running   0          84s
-webapp-78d6769cf8-x9clv   1/1     Running   0          84s
+PS D:\DeskTop\DEVOPS_COURS> kubectl apply -f webapp.yaml                                                      
+deployment.apps/webapp created
 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout status deployment/webapp
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pods 
+NAME                      READY   STATUS    RESTARTS   AGE
+webapp-78d6769cf8-69rvf   1/1     Running   0          38s
+webapp-78d6769cf8-f7xvb   1/1     Running   0          38s
+webapp-78d6769cf8-jmhq9   1/1     Running   0          38s
+webapp-78d6769cf8-kjslv   1/1     Running   0          38s
+webapp-78d6769cf8-vr7t2   1/1     Running   0          38s
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout status deployment/webapp
 deployment "webapp" successfully rolled out
 
 3. Get the replicaset that created with this deployment 
 
 answer:
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get replicaset -l app=webapp
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl get replicaset -l app=webapp
 NAME                DESIRED   CURRENT   READY   AGE
-webapp-78d6769cf8   5         5         5       2m43s
+webapp-78d6769cf8   5         5         5       71s
 
 
 4. EXPORT the yaml of the replicaset and pods of this deployment
