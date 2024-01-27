@@ -6,19 +6,36 @@ Create an nginx pod and load environment values from the above configmap keyvalc
 
 answer:
 
-ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ cat > config.txt << EOF
+gidon@MyDevice:/mnt/d/DeskTop/DEVOPS_COURSE$ cat > config.txt << EOF
 key1=value1
 key2=value2
 EOF
 
-ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ kubectl create configmap keyvalcfgmap --from-file=config.txt
+gidon@MyDevice:/mnt/d/DeskTop/DEVOPS_COURSE$ cat config.txt
+key1=value1
+key2=value2
+
+gidon@MyDevice:/mnt/d/DeskTop/DEVOPS_COURSE$ kubectl create configmap keyvalcfgmap --from-file=config.txt
 configmap/keyvalcfgmap created
 
-ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ kubectl run nginx --image=nginx --restart=Never --dry-run=client -o yaml > nginx-pod.yaml
+gidon@MyDevice:/mnt/d/DeskTop/DEVOPS_COURSE$ kubectl get configmap keyvalcfgmap -o yaml
+apiVersion: v1
+data:
+  config.txt: |
+    key1=value1
+    key2=value2
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2024-01-27T20:34:14Z"
+  name: keyvalcfgmap
+  namespace: default
+  resourceVersion: "228069"
+  uid: b7ed3519-5821-49e9-81eb-a96e3c27ef11
 
 first:
 
-ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ nano nginx-pod.yaml
+gidon@MyDevice:/mnt/d/DeskTop/DEVOPS_COURSE$ kubectl run nginx --image=nginx --restart=Never --dry-run=client -o yaml > nginx-pod.yaml
+gidon@MyDevice:/mnt/d/DeskTop/DEVOPS_COURSE$ nano nginx-pod.yaml
 
 apiVersion: v1
 kind: Pod
@@ -37,31 +54,30 @@ spec:
 status: {}
 
 
-kubectl apply -f nginx-pod.yaml
+gidon@MyDevice:/mnt/d/DeskTop/DEVOPS_COURSE$ kubectl apply -f nginx-pod.yaml
+pod/nginx created
 
-
-ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ kubectl exec -it nginx -- printenv
+gidon@MyDevice:/mnt/d/DeskTop/DEVOPS_COURSE$ kubectl exec -it nginx -- printenv
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 HOSTNAME=nginx
 TERM=xterm
-KUBERNETES_SERVICE_PORT=443
-KUBERNETES_SERVICE_PORT_HTTPS=443
-KUBERNETES_PORT=tcp://10.96.0.1:443
 KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443
 KUBERNETES_PORT_443_TCP_PROTO=tcp
 KUBERNETES_PORT_443_TCP_PORT=443
 KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1
 KUBERNETES_SERVICE_HOST=10.96.0.1
+KUBERNETES_SERVICE_PORT=443
+KUBERNETES_SERVICE_PORT_HTTPS=443
+KUBERNETES_PORT=tcp://10.96.0.1:443
 NGINX_VERSION=1.25.3
 NJS_VERSION=0.8.2
 PKG_RELEASE=1~bookworm
 HOME=/root
 
 
+after change: 
+nginx-pod.yaml:
 
-after change:
-
-after change: nginx-pod.yaml:
 apiVersion: v1
 kind: Pod
 metadata:
@@ -80,32 +96,32 @@ spec:
   restartPolicy: Never
 
 
-ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ kubectl apply -f nginx-pod.yaml
+gidon@MyDevice:/mnt/d/DeskTop/DEVOPS_COURSE$ kubectl apply -f nginx-pod.yaml
 pod/nginx created
-ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ kubectl get pods
-NAME    READY   STATUS    RESTARTS   AGE
-nginx   1/1     Running   0          7s
 
-ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ kubectl exec -it nginx -- printenv
+gidon@MyDevice:/mnt/d/DeskTop/DEVOPS_COURSE$ kubectl get pods
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   0          18s
+
+gidon@MyDevice:/mnt/d/DeskTop/DEVOPS_COURSE$ kubectl exec -it nginx -- printenv
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 HOSTNAME=nginx
 TERM=xterm
 config.txt=key1=value1
 key2=value2
 
-KUBERNETES_SERVICE_HOST=10.96.0.1
-KUBERNETES_SERVICE_PORT=443
-KUBERNETES_SERVICE_PORT_HTTPS=443
-KUBERNETES_PORT=tcp://10.96.0.1:443
 KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443
 KUBERNETES_PORT_443_TCP_PROTO=tcp
 KUBERNETES_PORT_443_TCP_PORT=443
 KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1
+KUBERNETES_SERVICE_HOST=10.96.0.1
+KUBERNETES_SERVICE_PORT=443
+KUBERNETES_SERVICE_PORT_HTTPS=443
+KUBERNETES_PORT=tcp://10.96.0.1:443
 NGINX_VERSION=1.25.3
 NJS_VERSION=0.8.2
 PKG_RELEASE=1~bookworm
 HOME=/root
-ubuntu@ip-172-31-28-76:~/workarea/devopshift/gidon$ 
 
 
 
