@@ -6,6 +6,10 @@ Create an nginx pod and load environment values from the above configmap keyvalc
 
 answer:
 
+PS D:\DeskTop\DEVOPS_COURSE> wsl -d Ubuntu     
+Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.133.1-microsoft-standard-WSL2 x86_64)
+
+
 gidon@MyDevice:/mnt/d/DeskTop/DEVOPS_COURSE$ cat > config.txt << EOF
 key1=value1
 key2=value2
@@ -75,7 +79,7 @@ PKG_RELEASE=1~bookworm
 HOME=/root
 
 
-after change: 
+Second-  after change: 
 nginx-pod.yaml:
 
 apiVersion: v1
@@ -123,7 +127,8 @@ NJS_VERSION=0.8.2
 PKG_RELEASE=1~bookworm
 HOME=/root
 
-
+gidon@MyDevice:/mnt/d/DeskTop/DEVOPS_COURSE$ kubectl delete pods --all
+pod "nginx" deleted
 
 
 
