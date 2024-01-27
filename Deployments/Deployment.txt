@@ -120,13 +120,13 @@ nginx:1.17.4
 
 answer:
 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment/webapp
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment/webapp
 deployment.apps/webapp 
 REVISION  CHANGE-CAUSE
 1         <none>
 2         <none>
 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp --revision=1
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp --revision=1
 deployment.apps/webapp with revision #1
 Pod Template:
   Labels:       app=webapp
@@ -140,7 +140,7 @@ Pod Template:
     Mounts:     <none>
   Volumes:      <none>
 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp --revision=2
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp --revision=2
 deployment.apps/webapp with revision #2
 Pod Template:
   Labels:       app=webapp
@@ -154,10 +154,9 @@ Pod Template:
     Mounts:     <none>
   Volumes:      <none>
 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods -l app=webapp
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pods -l app=webapp
 NAME                      READY   STATUS    RESTARTS   AGE
-webapp-7f88774d9b-v7kh6   1/1     Running   0          3m46s
-
+webapp-7f88774d9b-8qf9r   1/1     Running   0          67s
 
 9. Undo the deployment to the previous version 1.17.1 and verify Image has the previous version
 
@@ -177,12 +176,14 @@ nginx:1.17.1
   d. update the deployment with the image version latest and check the history and verify nothing is going on
 
 answer:
+
 PS D:\DeskTop\DEVOPS_COURSE> kubectl set image deployment/webapp nginx=nginx:1.100
 deployment.apps/webapp image updated
 PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods
 NAME                      READY   STATUS         RESTARTS   AGE
 webapp-5768b68bf-xx7f8    1/1     Running        0          88s
 webapp-86c5d47987-ktwvj   0/1     ErrImagePull   0          7s
+
 PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout undo deployment/webapp
 deployment.apps/webapp rolled back
 PS D:\DeskTop\DEVOPS_COURSE> kubectl get pods
@@ -199,7 +200,7 @@ REVISION  CHANGE-CAUSE
 4         <none>
 5         <none>
 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl rollout history deployment webapp --revision=5
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp --revision=5
 deployment.apps/webapp with revision #5
 Pod Template:
   Labels:       app=webapp
@@ -213,32 +214,68 @@ Pod Template:
     Mounts:     <none>
   Volumes:      <none>
 
+PS D:\DeskTop\DEVOPS_COURS> kubectl set image deployment/webapp nginx=nginx:latest
+deployment.apps/webapp image updated
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pods
+NAME                      READY   STATUS    RESTARTS   AGE
+webapp-84648db54b-bn5xc   1/1     Running   0          7s
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment/webapp
+deployment.apps/webapp 
+REVISION  CHANGE-CAUSE
+2         <none>
+4         <none>
+5         <none>
+6         <none>
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pod -l app=webapp -o=jsonpath='{.items[0].spec.containers[0].image}'
+nginx:latest
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl rollout history deployment webapp --revision=6
+deployment.apps/webapp with revision #6
+Pod Template:
+  Labels:       app=webapp
+        pod-template-hash=84648db54b
+  Containers:
+   nginx:
+    Image:      nginx:latest
+    Port:       80/TCP
+    Host Port:  0/TCP
+    Environment:        <none>
+    Mounts:     <none>
+  Volumes:      <none>
+
+
+
+
 11. Apply the autoscaling to this deployment with minimum 10 and maximum 20 replicas and target CPU of 85% and verify hpa is created and replicas are increased to 10 from 1 
 
 answer:
-kubectl autoscale deployment webapp --cpu-percent=85 --min=10 --max=20
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl autoscale deployment webapp --cpu-percent=85 --min=10 --max=20
 horizontalpodautoscaler.autoscaling/webapp autoscaled
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get hpa
+
+PS D:\DeskTop\DEVOPS_COURS> kubectl get hpa
 NAME     REFERENCE           TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
-webapp   Deployment/webapp   <unknown>/85%   10        20        0          12s
+webapp   Deployment/webapp   <unknown>/85%   10        20        0          8s
 
-PS D:\DeskTop\DEVOPS_COURSE> kubectl get deployment -w
+PS D:\DeskTop\DEVOPS_COURS> kubectl get deployment -w
 NAME     READY   UP-TO-DATE   AVAILABLE   AGE
-webapp   10/10   10           10          16m
+webapp   10/10   10           10          13m
 
-
-PS D:\DeskTop\DEVOPS_COURSE>  kubectl get pods
-NAME                     READY   STATUS    RESTARTS   AGE
-webapp-5768b68bf-bw8ng   1/1     Running   0          2m14s
-webapp-5768b68bf-g8rdx   1/1     Running   0          2m14s
-webapp-5768b68bf-h6t99   1/1     Running   0          2m14s
-webapp-5768b68bf-hn8t4   1/1     Running   0          2m14s
-webapp-5768b68bf-ktnsm   1/1     Running   0          2m14s
-webapp-5768b68bf-lf6vv   1/1     Running   0          2m14s
-webapp-5768b68bf-lr7tn   1/1     Running   0          2m14s
-webapp-5768b68bf-p6vh8   1/1     Running   0          2m14s
-webapp-5768b68bf-w92k7   1/1     Running   0          2m14s
-webapp-5768b68bf-xx7f8   1/1     Running   0          7m31s
+PS D:\DeskTop\DEVOPS_COURS> kubectl get pods
+NAME                      READY   STATUS    RESTARTS   AGE
+webapp-84648db54b-5cfw5   1/1     Running   0          43s
+webapp-84648db54b-bn5xc   1/1     Running   0          6m41s
+webapp-84648db54b-bpfb9   1/1     Running   0          43s
+webapp-84648db54b-c6l6t   1/1     Running   0          43s
+webapp-84648db54b-g7kzs   1/1     Running   0          43s
+webapp-84648db54b-j2gqw   1/1     Running   0          43s
+webapp-84648db54b-k8lr4   1/1     Running   0          43s
+webapp-84648db54b-kmx7h   1/1     Running   0          43s
+webapp-84648db54b-tpfbc   1/1     Running   0          43s
+webapp-84648db54b-vx92j   1/1     Running   0          43s
 
 
 12.
